@@ -1,5 +1,7 @@
 # TCP/IP scripts
 
+These scripts are for educational purposes. If you wish to get serious get tools like [tcpdump](tcpdump.md) and [Wireshark](Wireshark.md).
+
 ## Sniffer detection
 
 ### Locally

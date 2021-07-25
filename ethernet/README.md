@@ -10,6 +10,7 @@ Both scripts use [scapy](https://scapy.readthedocs.io/en/latest/), which is list
 
 Tools that can do what the scripts can do, and that are further evolved (can do more)
 
-* [NetCommander](https://github.com/meh/NetCommander}
+* [NetCommander](https://github.com/meh/NetCommander)
 * [Packetstorm ARP attack tool](https://packetstormsecurity.com/files/81368/Hackers-Hideaway-ARP-Attack-Tool.html)
 * [Loki](https://www.c0decafe.de/)
+* [sockstat](sockstat.md)
