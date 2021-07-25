@@ -1,3 +1,5 @@
-# Scripts
+# Network scripts
 
-Demystifying hacks and defenses by python scripting.
+Demystification by python scripting network hacks and network system adminstration.
+
+Most of these scripts require su privileges.
