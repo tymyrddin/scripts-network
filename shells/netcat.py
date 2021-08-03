@@ -215,6 +215,8 @@ class Client:
 # Main
 if __name__ == '__main__':
     try:
+        # Using the argparse module to create a command line interface with arguments 
+        # to invoke uploading a file, executing a command, or starting a command shell.
         parser = argparse.ArgumentParser(prog='netcat.py',description='Connect to a TCP server or create a server on a port')
         parser.add_argument('-t', '--target', dest='target', metavar='host', type=str,
                             help='IP target or address to bind to')
