@@ -243,6 +243,7 @@ if __name__ == '__main__':
             parser.print_help()
             sys.exit(1)
         if args.listen:
+            # Server mode
             handlers = []
             if args.command:
                 handlers.append(CommandHandler())
@@ -253,6 +254,7 @@ if __name__ == '__main__':
             s = Server(args.target, args.port, handlers)
             s.listen()
         if not args.listen:
+            # Client mode
             client = Client(args.target, args.port)
             client.run()
     except KeyboardInterrupt:
