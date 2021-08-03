@@ -211,58 +211,6 @@ class Client:
             # Interrupt the input
             os.kill(os.getpid(), signal.SIGINT)
 
-def parse_args():
-    parser = argparse.ArgumentParser(prog='nettool.py',description='Connect to a TCP server or create a server on a port')
-    parser.add_argument('-t', '--target', dest='target', metavar='host', type=str,
-                        help='IP target or address to bind to')
-    parser.add_argument('-p', '--port', dest='port', metavar='port', type=int,
-                        help='Target port or port to bind to')
-    parser.add_argument('-l', '--listen', dest='listen', action='store_true',
-                        help='Initialise a listener on {target}:{port}')
-    parser.add_argument('-c', '--command', dest='command', action='store_true',
-                        help='Attach a command listener to a server. Cannot be used with -u')
-    parser.add_argument('-e', '--echo', dest='echo', action='store_true',
-                        help='Attach an echo listener to a server')
-    parser.add_argument('-u', '--upload', dest='upload', metavar='upload_location', type=str,
-                        help='Start an upload server and upload to {upload_location}. Cannot be used with -c')
-    parser.set_defaults(listen=False, command=False, echo=False)
-    args = parser.parse_args(sys.argv[1:])
-    arg_problems = arg_sanity_check(args)
-    if len(arg_problems) > 0:
-        for p in arg_problems:
-            print("[*] {0}".format(p))
-        parser.print_help()
-        sys.exit(1)
-    return args
-
-
-def arg_sanity_check(args):
-    arg_problems = []
-    if not args.target:
-        arg_problems.append("Target is required")
-    if not args.port:
-        arg_problems.append("Port is required")
-    if args.command and args.upload:
-        arg_problems.append("Can not have an upload server and a command server at the same time")
-    return arg_problems
-
-
-def main():
-    args = parse_args()
-    if args.listen:
-        handlers = []
-        if args.command:
-            handlers.append(CommandHandler())
-        if args.echo:
-            handlers.append(EchoHandler())
-        if args.upload:
-            handlers.append(UploadHandler(args.upload))
-        s = Server(args.target, args.port, handlers)
-        s.listen()
-    if not args.listen:
-        client = Client(args.target, args.port)
-        client.run()
-
 
 # Main
 if __name__ == '__main__':
