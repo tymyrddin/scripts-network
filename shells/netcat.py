@@ -1,6 +1,5 @@
 """
 netcat.py - Replacement of the netcat script in Black Hat Python
-Based on script by Gream
 """
 
 import argparse
