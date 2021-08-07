@@ -39,7 +39,7 @@ It can be wise to encrypt traffic to avoid detection using Secure Shell (SSH). T
 
 With Python, raw sockets and some crypto magic can be used to create an SSH client and server. The Paramiko library uses PyCrypto, and provides simple access to the SSH2 protocol.
 
-The [ssh_server.py](ssh_server.py) and [ssh_client.py](ssh_client.py)) and [ssh_proxy.py](ssh_proxy.py) scripts are for learning to use Paramiko to make a connection and run a command on an SSH system, configure an SSH server and SSH client to run remote commands on a Windows machine, and puzzle out the reverse tunnel demo file included with Paramiko to duplicate the proxy.py option made earlier (also in this directory).
+The [ssh_server.py](ssh_server.py), [ssh_client.py](ssh_client.py)) and [ssh_proxy.py](ssh_proxy.py) scripts are for learning to use Paramiko to make a connection and run a command on an SSH system, configure an SSH server and SSH client to run remote commands on a Windows machine, and puzzle out the reverse tunnel demo file included with Paramiko to duplicate the proxy.py option made earlier (also in this directory).
 
 On one machine (for example a Windows machine) start the server:
 
