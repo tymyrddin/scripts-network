@@ -6,8 +6,11 @@ Adopted and adapted from BlackHat 2021 and Gream
 """
 
 # socket.recv and socket.send no longer deal with strings and expect 
-# bytes type. Use select library instead of relying on looking for 
-# newlines in received data.
+# bytes type. The select library is used instead of relying on 
+# looking for newlines in received data.
+#
+# No future development planned for this one, as several 
+# well-developed tools exist.
 
 import argparse
 import socket
