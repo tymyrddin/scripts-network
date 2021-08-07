@@ -1,6 +1,13 @@
 """
-netcat.py - Replacement of the netcat script in Black Hat Python
+netcat.py - Replacement of the netcat script. The Message Handlers
+are just a way to make it easier to add functionality later.
+
+Adopted and adapted from BlackHat 2021 and Gream
 """
+
+# socket.recv and socket.send no longer deal with strings and expect 
+# bytes type. Use select library instead of relying on looking for 
+# newlines in received data.
 
 import argparse
 import socket
@@ -17,13 +24,16 @@ class Handler:
     def init_connection(self, connection):
         pass
 
+
     def handle_msg(self, msg, connection):
         return False
 
 
 class EchoHandler(Handler):
+
     def init_connection(self, connection):
         connection.send(b'Echo enabled\r\n')
+
 
     def handle_msg(self, msg, connection):
         if len(msg) == 0:
@@ -34,12 +44,13 @@ class EchoHandler(Handler):
         connection.send(bytes("{0}\r\n".format(strmsg), 'utf-8'))
         return False
 
+
 class CommandHandler(Handler):
-    # Run command and return the output
 
     __prompt = b'netcatsh > '
     def init_connection(self, connection):
         connection.send(self.__prompt)
+
 
     def handle_msg(self, msg, connection):
         if len(msg) > 0:
@@ -65,6 +76,7 @@ class UploadHandler(Handler):
     def __init__(self, upload_location):
         self.__upload_location = upload_location
 
+
     def handle_msg(self, msg, connection):
         try:
             file_descriptor = open(self.__upload_location, "w")
@@ -79,12 +91,17 @@ class UploadHandler(Handler):
 
 class Server:
 
+    # Change to use a thread pool and worker pattern instead of spinning 
+    # up a new thread for every incoming connection. For now this will do.
+
+
     def __init__(self, target, port, handlers):
         self.__socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.__target = target
         self.__port = port
         self.__handlers = handlers
         self.__stop = False
+
 
     def listen(self):
         print('[*] Listening on {0}:{1}'.format(self.__target, self.__port))
@@ -108,8 +125,6 @@ class Server:
             self.__socket.close()
 
     def __handle(self, client_conn, addr):
-        # Handle incoming client connections
-
         close = False
         for handler in self.__handlers:
             handler.init_connection(client_conn)
@@ -148,7 +163,13 @@ class Server:
 
 
 class Client:
-    # Making connection
+
+    # The client class splits up the reader and writer routines, 
+    # and puts the reader on a background thread.
+    # If the reader finds that the socket is closed, it will 
+    # send an interrupt to itself to rip out the call to input() 
+    # and close the program down gracefully.
+
     def __init__(self, target, port):
         self.__target = target
         self.__port = port
@@ -212,53 +233,62 @@ class Client:
             os.kill(os.getpid(), signal.SIGINT)
 
 
-# Main
+def parse_args():
+    parser = argparse.ArgumentParser(prog='nettool.py',description='Connect to a TCP server or create a server on a port')
+    parser.add_argument('-t', '--target', dest='target', metavar='host', type=str,
+                        help='IP target or address to bind to')
+    parser.add_argument('-p', '--port', dest='port', metavar='port', type=int,
+                        help='Target port or port to bind to')
+    parser.add_argument('-l', '--listen', dest='listen', action='store_true',
+                        help='Initialise a listener on {target}:{port}')
+    parser.add_argument('-c', '--command', dest='command', action='store_true',
+                        help='Attach a command listener to a server. Cannot be used with -u')
+    parser.add_argument('-e', '--echo', dest='echo', action='store_true',
+                        help='Attach an echo listener to a server')
+    parser.add_argument('-u', '--upload', dest='upload', metavar='upload_location', type=str,
+                        help='Start an upload server and upload to {upload_location}. Cannot be used with -c')
+    parser.set_defaults(listen=False, command=False, echo=False)
+    args = parser.parse_args(sys.argv[1:])
+    arg_problems = arg_sanity_check(args)
+    if len(arg_problems) > 0:
+        for p in arg_problems:
+            print("[*] {0}".format(p))
+        parser.print_help()
+        sys.exit(1)
+    return args
+
+
+def arg_sanity_check(args):
+    problems = []
+    if not args.target:
+        problems.append("Target is required")
+    if not args.port:
+        problems.append("Port is required")
+    if args.command and args.upload:
+        problems.append("Can't have an upload server and a command server at the same time")
+    return problems
+
+
+def main():
+    args = parse_args()
+    if args.listen:
+        handlers = []
+        if args.command:
+            handlers.append(CommandHandler())
+        if args.echo:
+            handlers.append(EchoHandler())
+        if args.upload:
+            handlers.append(UploadHandler(args.upload))
+        s = Server(args.target, args.port, handlers)
+        s.listen()
+    if not args.listen:
+        client = Client(args.target, args.port)
+        client.run()
+
+
 if __name__ == '__main__':
     try:
-        # Using the argparse module to create a command line interface with arguments 
-        # to invoke uploading a file, executing a command, or starting a command shell.
-        parser = argparse.ArgumentParser(prog='netcat.py',description='Connect to a TCP server or create a server on a port')
-        parser.add_argument('-t', '--target', dest='target', metavar='host', type=str,
-                            help='IP target or address to bind to')
-        parser.add_argument('-p', '--port', dest='port', metavar='port', type=int,
-                            help='Target port or port to bind to')
-        parser.add_argument('-l', '--listen', dest='listen', action='store_true',
-                            help='Initialise a listener on {target}:{port}')
-        parser.add_argument('-c', '--command', dest='command', action='store_true',
-                            help='Attach a command listener to a server. Cannot be used with -u')
-        parser.add_argument('-e', '--echo', dest='echo', action='store_true',
-                            help='Attach an echo listener to a server')
-        parser.add_argument('-u', '--upload', dest='upload', metavar='upload_location', type=str,
-                            help='Start an upload server and upload to {upload_location}. Cannot be used with -c')
-        parser.set_defaults(listen=False, command=False, echo=False)
-        args = parser.parse_args(sys.argv[1:])
-        arg_problems = []
-        if not args.target:
-            arg_problems.append("Target is required")
-        if not args.port:
-            arg_problems.append("Port is required")
-        if args.command and args.upload:
-            arg_problems.append("Can not have an upload server and a command server at the same time")
-        if len(arg_problems) > 0:
-            for p in arg_problems:
-                print("[*] {0}".format(p))
-            parser.print_help()
-            sys.exit(1)
-        if args.listen:
-            # Server mode
-            handlers = []
-            if args.command:
-                handlers.append(CommandHandler())
-            if args.echo:
-                handlers.append(EchoHandler())
-            if args.upload:
-                handlers.append(UploadHandler(args.upload))
-            s = Server(args.target, args.port, handlers)
-            s.listen()
-        if not args.listen:
-            # Client mode
-            client = Client(args.target, args.port)
-            client.run()
+        main()
     except KeyboardInterrupt:
         # No need for a stack trace
         pass
