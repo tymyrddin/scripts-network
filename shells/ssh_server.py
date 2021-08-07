@@ -1,10 +1,4 @@
-"""It can be wise to encrypt traffic to avoid detection using 
-Secure Shell (SSH). The target may not have an SSH client 
-(Windows systems usually do not)
-
-With Python, raw sockets and some crypto magic can be used to 
-create an SSH client and server. The Paramiko library uses 
-PyCrypto, and provides simple access to the SSH2 protocol.
+"""
 
 This script (and its accompanying ssh_client.py script) are for 
 learning to use Paramiko to make a connection and run a command 

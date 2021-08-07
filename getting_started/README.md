@@ -1,5 +1,9 @@
 # Getting started
 
+Creating TCP servers in Python is just as easy as creating a client.
+
+## The scripts
+
 In one terminal with the virtual environment activated run the [tcp_server.py](tcp_server.py) script:
 
     $ python tcp_server.py    

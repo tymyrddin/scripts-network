@@ -1,24 +1,4 @@
-"""Imagine having remote access to an SSH server on an internal network, 
-but no direct access to the web server on the same network. The
-server with SSH installed does have access, but this SSH server doesn’t have
-the tools we'd like to use.
-
-One way to overcome this problem is to set up a forward SSH tunnel.
-    ssh -L 8008:web:80 username@sshserver
-
-Alas, not many Windows systems are running an SSH server service. 
-Instead, configure a reverse SSH tunneling connection: Set up
-an SSH server on attack machine and connect back to it from the Windows
-client and through that SSH connection, specify a remote port on the 
-SSH server that gets tunneled to the local host and port.
-
-These then can be used to expose port 3389 to access an internal system 
-using Remote Desktop or to access another system that the Windows client 
-can access (like the web server).
-
-The Paramiko demo files include a file called rforward.py that does
-exactly this (transport mode of Paramiko).
-
+"""
 Adopted and adapted from BlackHat 2021
 """
 

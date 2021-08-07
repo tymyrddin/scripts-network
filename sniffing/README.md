@@ -1,20 +1,8 @@
-# Shells
+# Sniffing
 
-## Netcat replacement
+With network sniffers you can see packets entering and exiting a target machine and they have many practical uses before and after exploitation. In some cases, it will be
+possible to use existing sniffing tools like [Wireshark](https://wireshark.org/) and [Scapy](../scapy/README.md). Not always. There is an advantage to be able to quickly build sniffers to view and decode network traffic.
 
-First terminal (server):
+## UDP Host Discovery Tool
 
-    $ python netcat.py -t 192.168.122.108 -p 5555 -l -c                  
-    [*] Listening on 192.168.122.108:5555
-    [*] Connection from ('192.168.122.108', 38332)
-    [*] Running command "cat /etc/passwd"
-    [*] Output: b'root:[...]
-
-Second terminal (client):
-
-    $ python netcat.py -t 192.168.122.108 -p 5555
-    Go for it!
-    netcatsh > 
-    cat /etc/passwd
-    root:[...]
-    
+## Decoding ICMP

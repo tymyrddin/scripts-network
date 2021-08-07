@@ -1,17 +1,5 @@
-"""It can be wise to encrypt traffic to avoid detection using 
-Secure Shell (SSH). The target may not have an SSH client 
-(Windows systems usually do not)
+"""
 
-With Python, raw sockets and some crypto magic can be used to 
-create an SSH client and server. The Paramiko library uses 
-PyCrypto, and provides simple access to the SSH2 protocol.
-
-This script (and its accompanying ssh_server.py script) are for 
-learning to use Paramiko to make a connection and run a command 
-on an SSH system, configure an SSH server and SSH client to run 
-remote commands on a Windows machine, and puzzle out the 
-reverse tunnel demo file included with Paramiko to duplicate 
-the proxy.py option made earlier (also in this directory).
 
 Adopted and adapted from BlackHat 2021 and Gream
 """
