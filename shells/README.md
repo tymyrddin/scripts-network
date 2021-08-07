@@ -26,9 +26,9 @@ Second terminal (client):
 
 There are many reasons to have a [TCP proxy](proxy.py) in our tool belt: forwarding traffic to bounce from host to host, or for assessing network-based software.
 
-usage: proxy.py [-h] [-c CLIENT] [-o CLIENTPORT] -t TARGET -p TARGETPORT
-                [-r RECEIVE_FIRST]
-proxy.py: error: the following arguments are required: -t/--target, -p/--port
+    usage: proxy.py [-h] [-c CLIENT] [-o CLIENTPORT] -t TARGET -p TARGETPORT
+                    [-r RECEIVE_FIRST]
+    proxy.py: error: the following arguments are required: -t/--target, -p/--port
 
 Note: Use sudo with port 21 because it is a privileged port, so listening on it
 requires administrative or root privileges.
