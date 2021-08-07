@@ -4,7 +4,7 @@ In some cases, being able to create our own TCP servers for writing command shel
 
 ## Netcat replacement
 
-Netcat is the utility knife of networking, so it is no surprise that systems administrators remove it from their systems. [Such a useful tool](netcat.py) would be quite an asset if an attacker managed to find a way in.
+Netcat is the utility knife of networking, so it is no surprise that systems administrators remove it from their systems. Such a useful [netcat tool](netcat.py) would be quite an asset if an attacker managed to find a way in.
 
 First terminal (server):
 
