@@ -234,7 +234,7 @@ class Client:
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(prog='nettool.py',description='Connect to a TCP server or create a server on a port')
+    parser = argparse.ArgumentParser(prog='netcat.py',description='Connect to a TCP server or create a server on a port')
     parser.add_argument('-t', '--target', dest='target', metavar='host', type=str,
                         help='IP target or address to bind to')
     parser.add_argument('-p', '--port', dest='port', metavar='port', type=int,
