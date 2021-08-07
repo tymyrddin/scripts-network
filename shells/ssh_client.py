@@ -21,11 +21,12 @@ Adopted and adapted from BlackHat 2021 and Gream
 # The initial call to recv() is for printing a welcome message 
 # at connection. This could be changed to a get_banner call.
 
-import paramiko
 import sys
 import argparse
 import threading
 import subprocess
+
+import paramiko
 
 
 def parse_args(args):

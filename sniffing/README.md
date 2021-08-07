@@ -18,9 +18,3 @@ Second terminal (client):
     cat /etc/passwd
     root:[...]
     
-## Proxy
-
-## SSH server and client
-
-## SSH Proxy
-    
