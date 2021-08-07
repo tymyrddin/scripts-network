@@ -4,7 +4,7 @@ In some cases, being able to create our own TCP servers for writing command shel
 
 ## Netcat replacement
 
-Netcat is the utility knife of networking, so it is no surprise that systems administrators remove it from their systems. Such a useful [netcat tool](netcat.py) would be quite an asset if an attacker managed to find a way in.
+Netcat is the utility knife of networking, so it is no surprise that systems administrators remove it from their systems. Such a useful [netcat.py](netcat.py) tool would be quite an asset if an attacker managed to find a way in.
 
 First terminal (server):
 
@@ -24,7 +24,7 @@ Second terminal (client):
     
 ## TCP Proxy
 
-There are many reasons to have a [TCP proxy](proxy.py) in our tool belt: forwarding traffic to bounce from host to host, or for assessing network-based software.
+There are many reasons to have a [tcp_proxy.py](tcp_proxy.py) in our tool belt: forwarding traffic to bounce from host to host, or for assessing network-based software.
 
     usage: proxy.py [-h] [-c CLIENT] [-o CLIENTPORT] -t TARGET -p TARGETPORT
                     [-r RECEIVE_FIRST]
@@ -52,6 +52,10 @@ On another machine start up the client:
     Password:
 
 ## SSH Proxy
+
+A [ssh_proxy.py](ssh_proxy.py) tool that will allow us to run commands by entering them into an SSH client on a remote SSH server.
+
+## SSH reverse tunnel with Paramiko
 
 Imagine having remote access to an SSH server on an internal network, but no direct access to the web server on the same network. The server with SSH installed does have access, but this SSH server doesn’t have the tools we'd like to use.
 
