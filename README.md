@@ -1,10 +1,15 @@
 # Network scripts
 
-Demystification by python scripting network hacks and network system adminstration.
-With many thanks to BlackHat and Gream.
+Some python scripting network hacks and network system administration.
 
-* [Getting started](getting_started)
-* [TCP servers, shells and proxies](shells)
-* [Sniffing](sniffing)
-* [Scapy](scapy)
+- [x] [MAC changer](mac_changer)
+- [ ] Network scanner
+- [ ] ARP spoofer
+- [ ] Packet sniffer
+- [ ] DNS spoofer
+- [ ] File interceptor
+- [ ] Code injector
+- [ ] Bypassing HTTPS
+- [ ] ARP spoof detector
+- [ ] ...
 
