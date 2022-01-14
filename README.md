@@ -1,10 +1,11 @@
 # Network scripts
 
 Some python scripting network hacks and network system administration.
+With many thanks to Black Hat, Gream and ZSecurity.
 
 - [x] [MAC changer](mac_changer)
 - [x] [Network scanner](network_scanner)
-- [ ] ARP spoofer
+- [x] [ARP spoofer](arp_spoofer)
 - [ ] Packet sniffer
 - [ ] DNS spoofer
 - [ ] File interceptor
