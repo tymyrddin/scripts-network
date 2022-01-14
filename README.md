@@ -3,7 +3,7 @@
 Some python scripting network hacks and network system administration.
 
 - [x] [MAC changer](mac_changer)
-- [ ] Network scanner
+- [x] [Network scanner](network_scanner)
 - [ ] ARP spoofer
 - [ ] Packet sniffer
 - [ ] DNS spoofer
