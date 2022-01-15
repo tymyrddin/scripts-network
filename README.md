@@ -6,7 +6,7 @@ With many thanks to Black Hat, Gream and ZSecurity.
 - [x] [MAC changer](mac_changer)
 - [x] [Network scanner](network_scanner)
 - [x] [ARP spoofer](arp_spoofer)
-- [ ] Packet sniffer
+- [x] [Packet sniffer](packet_sniffer)
 - [ ] DNS spoofer
 - [ ] File interceptor
 - [ ] Code injector
