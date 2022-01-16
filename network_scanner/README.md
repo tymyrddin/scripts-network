@@ -21,12 +21,3 @@ Example:
 ```shell
 $ sudo python3 network_scanner.py -t 192.168.122.1/24
 ```
-
-## Troubleshooting
-To install `scapy` for both Python 2.7 and Python 3 (on Kali), [install for Python 3](https://scapy.readthedocs.io/en/latest/installation.html) first, and then copy the `scapy` folder in `dist-packages` to dist-packages of 2.7:
-
-```commandline
-sudo mkdir /usr/lib/python2.7/dist-packages/scapy
-cd /usr/lib/python3/dist-packages/
-cp -avr scapy/* /usr/lib/python2.7/dist-packages/scapy
-```
