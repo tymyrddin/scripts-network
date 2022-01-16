@@ -54,7 +54,7 @@ Common errors:
 
 ```shell
 kali:~$ ImportError: No module named <Package Name>
-kali:~$ pip: command not found error in Kali Linux
+kali:~$ pip: command not found error
 ```
 
 Messing about with system files for making scripts not being a good idea, we chose to use `pyenv` (after that pip for python package installs):
