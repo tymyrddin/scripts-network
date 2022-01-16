@@ -11,6 +11,13 @@
 $ sudo iptables -I FORWARD -j NFQUEUE --queue-num 0
 ```
 
+or
+
+```shell
+$ sudo iptables -I OUTPUT -j NFQUEUE --queue-num 0
+$ sudo iptables -I INPUT -j NFQUEUE --queue-num 0
+```
+
 ## Usage
 
 ### Example use
@@ -35,8 +42,9 @@ View queue with
 $ sudo cat /proc/net/netfilter/nfnetlink_queue
 ```
 
-Afterwards, do not forget to remove the created iptables `NFQUEUE`:
+Afterwards, do not forget to disable net.ipv4.ip_forward and to remove the created iptables `NFQUEUE`:
 
 ```shell
+$ sudo sysctl -w net.ipv4.ip_forward=0
 $ sudo iptables --flush
 ```
