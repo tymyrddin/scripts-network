@@ -6,7 +6,7 @@ import argparse
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-s", "--spoof", dest="original_site", help="Specify a site to spoof")
+parser.add_argument("-o", "--original", dest="original_site", help="Specify a site to spoof")
 parser.add_argument("-r", "--redirect", dest="redirect_site", help="Specify a site to redirect to")
 options = parser.parse_args()
 
