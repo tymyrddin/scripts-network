@@ -3,15 +3,6 @@
 Some python scripting network hacks and network system administration.
 With many thanks to Black Hat, Gream and ZSecurity.
 
-## Requirements
-
-* A small pentesting lab with kali and a windows 10 (virtual) machines. Host was an Ubuntu 20.04. 
-* Python 2.7 and Python 3. Most scripts support both Python 2.7 and Python 3. Only a few only in Python 3. We chose to use `pyenv`. 
-
-For DIY details see the Getting Started section below.
-
-## Scripts
-
 - [x] [MAC changer](mac_changer)
 - [x] [Network scanner](network_scanner)
 - [x] [ARP spoofer](arp_spoofer)
@@ -21,6 +12,13 @@ For DIY details see the Getting Started section below.
 - [ ] Code injector
 - [ ] Bypassing HTTPS
 - [ ] ARP spoof detector
+
+## Requirements
+
+* A small pentesting lab with kali and a windows 10 (virtual) machines. Host was an Ubuntu 20.04. 
+* Python 2.7 and Python 3. Most scripts support both Python 2.7 and Python 3. Only a few only in Python 3. We chose to use `pyenv`. 
+
+For DIY details see the Getting Started section below.
 
 ## Getting started
 
@@ -50,13 +48,6 @@ In all cases you can use testing versions from Microsoft (for 90 days). In virtu
 Python 2.7 will reach the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 won’t be maintained after that date. A future version of pip will drop support for Python 2.7.
 ```
 
-Python 2.7 causes lots of bugs due to end of life. But many scripts in kali (and elsewhere) are still in 2.7. 
-Choosing to develop on the kali hacking machine in the little pentesting lab
-
-```shell
-Python 2.7 will reach the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 won’t be maintained after that date. A future version of pip will drop support for Python 2.7.
-```
-
 Python 2.7 causes lots of bugs due to end of life. But many scripts in kali (and elsewhere) are still in 2.7.
 
 Common errors:
@@ -66,7 +57,7 @@ kali:~$ ImportError: No module named <Package Name>
 kali:~$ pip: command not found error in Kali Linux
 ```
 
-Messing about with system files for making scripts not being a good idea, we chose to use `pyenv`:
+Messing about with system files for making scripts not being a good idea, we chose to use `pyenv` (after that pip for python package installs):
 
 ```shell
 kali:~$ sudo apt install -y build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python3-openssl git
