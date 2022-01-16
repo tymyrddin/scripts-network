@@ -40,5 +40,6 @@ usage: arp_spoofer.py [-h] [-t TARGET_IP] [-s SPOOF_IP]
 Example:
 
 ```shell
+$ sudo echo 1 > /proc/sys/net/ipv4/ip_forward
 $ sudo python3 arp_spoofer.py -t 192.168.122.75 -s 192.168.122.1
 ```
