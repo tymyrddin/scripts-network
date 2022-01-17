@@ -43,7 +43,8 @@ def process_packet(packet):
     # Convert the NetfilterQueue packet into a scapy packet.
     scapy_packet = scapy.IP(packet.get_payload())
     # If the scapy packet has the DNS Resource Record(DNSRR),
-    # modify the packet, otherwise no changes will be made.
+    # and if it is intended for our target domain, modify the
+    # packet, otherwise no changes will be made.
     if scapy_packet.haslayer(scapy.DNSRR):
         forged_packet = forge_packet(scapy_packet)
         # Set the forged scapy packet payload to the
