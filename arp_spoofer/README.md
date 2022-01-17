@@ -20,7 +20,7 @@ $ sudo arpspoof -i eth0 -t 192.168.122.1 192.168.122.75
 and setting enabling forward (not persistent) on the hacking machine:
 
 ```shell
-$ sudo echo 1 > /proc/sys/net/ipv4/ip_forward
+$ sudo sysctl -w net.ipv4.ip_forward=1
 ```
 
 And programming such an ARP Spoofer is excellent practice.

