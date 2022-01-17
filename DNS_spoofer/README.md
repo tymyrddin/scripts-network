@@ -21,7 +21,7 @@ $ sudo iptables -I INPUT -j NFQUEUE --queue-num 0
 ## Usage
 
 ```shell
-usage: dns_spoofer.py [-h] [-o ORIGINAL_SITE] [-r REDIRECT_SITE]
+usage: dns_spoofer.py [-h] [-d DOMAIN] [-r IP]
 ```
 
 ### Example use
