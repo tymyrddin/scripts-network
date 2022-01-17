@@ -18,7 +18,6 @@ def get_args():
 
 
 def forge_packet(scapy_packet):
-    options = get_args()
     # Get the DNS Query name from the scapy packet.
     # Query name is the host name sent by the victim to the DNS server.
     qname = scapy_packet[scapy.DNSQR].qname
@@ -54,6 +53,7 @@ def process_packet(packet):
     packet.accept()
 
 
+options = get_args()
 # Create netfilterqueue instance
 queue = netfilterqueue.NetfilterQueue()
 # Bind queue number 0 (queue zero in iptables)
