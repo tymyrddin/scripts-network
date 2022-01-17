@@ -18,11 +18,7 @@ With many thanks to Black Hat, Gream and ZSecurity.
 ## Requirements
 
 * A small pentesting lab with kali and a windows 10 (virtual) machines. Host was an Ubuntu 20.04. 
-* Python 2.7 and Python 3. Most scripts support both Python 2.7 and Python 3. Only a few only in Python 3. We chose to use `pyenv`. 
-
-For DIY details see the Getting Started section below.
-
-## Getting started
+* Python 2.7 and Python 3. Most scripts support Python 3, only a few support Python 2.7 (and Python 3). We chose to use `pyenv`. See below.
 
 ### Testlab
 
