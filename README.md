@@ -8,7 +8,7 @@ With many thanks to Black Hat, Gream and ZSecurity.
 - [x] [ARP spoofer](arp_spoofer)
 - [x] [Packet sniffer](packet_sniffer)
 - [x] [DNS spoofer](DNS_spoofer)
-- [ ] File interceptor
+- [ ] [File interceptor](File_interceptor)
 - [ ] Code injector
 - [ ] Bypassing HTTPS
 - [ ] ARP spoof detector
@@ -39,7 +39,7 @@ In all cases you can use testing versions from Microsoft (for 90 days). In virtu
 * [Windows 10 enterprise edition iso](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-10-enterprise) - 90 days
 * [Windows 10 Home or Pro iso](https://www.microsoft.com/en-in/software-download/windows10ISO) - Though you can download the image for free, you will have to use your own license key later.
 * [How To Install Windows 10 on Ubuntu KVM?](https://getlabsdone.com/install-windows-10-on-ubuntu-kvm/)
-* [Hosting a Kali Linux virtual machine using KVM on a Ubuntu 20.10 box](https://heds.nz/posts/hosting-kali-linux-kvm-ubuntu/)
+* [Hosting a Kali Linux virtual machine using KVM on an Ubuntu 20.10 box](https://heds.nz/posts/hosting-kali-linux-kvm-ubuntu/)
 * [Running Windows 10 on Linux using KVM with VGA Passthrough](https://www.heiko-sieger.info/running-windows-10-on-linux-using-kvm-with-vga-passthrough/)
 
 ### Python 2.7 and Python 3
