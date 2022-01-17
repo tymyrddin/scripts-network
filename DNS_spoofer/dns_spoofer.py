@@ -44,7 +44,6 @@ def forge_packet(scapy_packet):
 def process_packet(packet):
     # Convert the NetfilterQueue packet into a scapy packet.
     scapy_packet = scapy.IP(packet.get_payload())
-    # Check  in it
     # If the scapy packet has the DNS Resource Record(DNSRR),
     # modify the packet, otherwise no changes will be made.
     if scapy_packet.haslayer(scapy.DNSRR):
