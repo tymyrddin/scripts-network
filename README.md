@@ -17,7 +17,7 @@ With many thanks to Black Hat, Gream and ZSecurity.
 - [ ] Bypassing HTTPS
 - [ ] ARP spoof detector
 
-## Shells
+## Socket based shells
 - [ ] TCP reverse shell
 - [ ] HTTP reverse shell
 - [ ] Scriptable shell
