@@ -3,8 +3,11 @@
 Some python scripting network hacks and network system administration.
 With many thanks to Black Hat, Gream and ZSecurity.
 
+## Interfaces
 - [x] [Sockets](sockets)
 - [x] [MAC changer](mac_changer)
+
+## Scapy on a local network
 - [x] [Network scanner](network_scanner)
 - [x] [ARP spoofer](arp_spoofer)
 - [x] [Packet sniffer](packet_sniffer)
@@ -13,6 +16,8 @@ With many thanks to Black Hat, Gream and ZSecurity.
 - [ ] Code injector
 - [ ] Bypassing HTTPS
 - [ ] ARP spoof detector
+
+## Shells
 - [ ] TCP reverse shell
 - [ ] HTTP reverse shell
 - [ ] Scriptable shell
