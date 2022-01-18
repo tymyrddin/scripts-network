@@ -10,15 +10,33 @@ class SNFQ:
         self.qnum = qnum
         __class__.apache = apache
         if destination == "forward":
-            subprocess.call("iptables -I FORWARD -j NFQUEUE --queue-num {}".format(self.qnum), shell=True)
+            subprocess.call(
+                "iptables -I FORWARD -j NFQUEUE --queue-num {}".format(self.qnum),
+                shell=True,
+            )
         elif destination == "sslstrip":
-            subprocess.call("iptables -I OUTPUT -j NFQUEUE --queue-num {}".format(self.qnum), shell=True)
-            subprocess.call("iptables -I INPUT -j NFQUEUE --queue-num {}".format(self.qnum), shell=True)
-            subprocess.call("sudo iptables -t nat -A PREROUTING -p tcp"
-                            " --destination-port 80 -j REDIRECT --to-port 10000", shell=True)
+            subprocess.call(
+                "iptables -I OUTPUT -j NFQUEUE --queue-num {}".format(self.qnum),
+                shell=True,
+            )
+            subprocess.call(
+                "iptables -I INPUT -j NFQUEUE --queue-num {}".format(self.qnum),
+                shell=True,
+            )
+            subprocess.call(
+                "sudo iptables -t nat -A PREROUTING -p tcp"
+                " --destination-port 80 -j REDIRECT --to-port 10000",
+                shell=True,
+            )
         elif destination == "local":
-            subprocess.call("iptables -I OUTPUT -j NFQUEUE --queue-num {}".format(self.qnum), shell=True)
-            subprocess.call("iptables -I INPUT -j NFQUEUE --queue-num {}".format(self.qnum), shell=True)
+            subprocess.call(
+                "iptables -I OUTPUT -j NFQUEUE --queue-num {}".format(self.qnum),
+                shell=True,
+            )
+            subprocess.call(
+                "iptables -I INPUT -j NFQUEUE --queue-num {}".format(self.qnum),
+                shell=True,
+            )
         else:
             raise DestinationIncorrectException
         self.queue = netfilterqueue.NetfilterQueue()
