@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import netfilterqueue
+from snfq import SNFQ
 import scapy.all as scapy
 import argparse
 
@@ -73,9 +73,4 @@ def process_packet(packet):
 
 
 options = get_args()
-# Create netfilterqueue instance
-queue = netfilterqueue.NetfilterQueue()
-# Bind queue number 0 (queue zero in iptables)
-queue.bind(0, process_packet)
-# Run the queue
-queue.run()
+queue = SNFQ(process_packet, destination=options.destination)
