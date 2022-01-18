@@ -8,12 +8,14 @@ With many thanks to Black Hat, Gream and ZSecurity.
 - [x] [Network scanner](network_scanner)
 - [x] [ARP spoofer](arp_spoofer)
 - [x] [Packet sniffer](packet_sniffer)
-- [x] [DNS spoofer](DNS_spoofer)
-- [ ] [File interceptor](File_interceptor)
+- [x] [DNS spoofer](dns_spoofer)
+- [ ] [File interceptor](file_interceptor) - in progress
 - [ ] Code injector
 - [ ] Bypassing HTTPS
 - [ ] ARP spoof detector
-- [ ] [Shells](shells) - NEEDS WORK
+- [ ] TCP reverse shell
+- [ ] HTTP reverse shell
+- [ ] Scriptable shell
 
 ## Requirements
 
