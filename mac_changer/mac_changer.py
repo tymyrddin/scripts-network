@@ -7,13 +7,20 @@ import re
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--interface", dest="interface", help="interface to change MAC address for")
+    parser.add_argument(
+        "-i",
+        "--interface",
+        dest="interface",
+        help="interface to change MAC address for",
+    )
     parser.add_argument("-m", "--mac", dest="new_mac_address", help="new MAC address")
     values = parser.parse_args()
     if not values.interface:
         parser.error("[-] Please specify an interface, use --help for more information")
     if not values.new_mac_address:
-        parser.error("[-] Please specify a new MAC address, use --help for more information")
+        parser.error(
+            "[-] Please specify a new MAC address, use --help for more information"
+        )
     return values
 
 
@@ -26,7 +33,9 @@ def change_mac(interface, new_mac_address):
 
 def get_mac(interface):
     ifconfig_results = subprocess.check_output(["ifconfig", interface])
-    mac_search_results = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", str(ifconfig_results))
+    mac_search_results = re.search(
+        r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", str(ifconfig_results)
+    )
     if mac_search_results:
         return mac_search_results.group(0)
     else:

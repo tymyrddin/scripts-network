@@ -15,13 +15,13 @@ target_port = 9997
 # Create a socket object using the socket.socket() function of
 # the socket module. General syntax:
 #   s = socket.socket (socket_family, socket_type, protocol=0)
-# with socket_family: socket.AF_INET (the address family for IPv4), 
+# with socket_family: socket.AF_INET (the address family for IPv4),
 # and socket_type: socket.SOCK_DGRAM (UDP is unreliable and
 # connectionless)
 
 client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-# Send some data as bytes. 
+# Send some data as bytes.
 # The method returns the number of bytes sent.
 
 client.sendto(b"Nonsense", (target_host, target_port))
