@@ -12,8 +12,8 @@ With many thanks to Black Hat, Gream and ZSecurity.
 - [x] [ARP spoofer](arp_spoofer)
 - [x] [Packet sniffer](packet_sniffer)
 - [x] [DNS spoofer](dns_spoofer)
-- [ ] [File interceptor](file_interceptor) - in progress
-- [ ] Code injector
+- [x] [File interceptor](file_interceptor) 
+- [ ] [Code injector](code_injector) - in progress
 - [ ] Bypassing HTTPS
 - [ ] ARP spoof detector
 
