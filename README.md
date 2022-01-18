@@ -93,13 +93,7 @@ Check the changes with `echo $PATH`.
 Configure for having both available:
 
 ```shell
-kali:~$ exec $SHELL
 kali:~$ pyenv install 2.7.18
-```
-
-Also install the current python 3 in `pyenv`:
-
-```shell
 kali:~$ python -V
 <number>
 kali:~$ pyenv install <number>
