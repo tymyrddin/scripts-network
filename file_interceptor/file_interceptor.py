@@ -53,8 +53,8 @@ def process_packet(packet):
         if scapy_packet[scapy.TCP].dport == 80:
             # If target extension is in the load, wait for
             # the response to the package.
-            if options.extension in scapy_packet[scapy.Raw].load:
-                print("[+] Extension Request")
+            if options.extension in str(scapy_packet[scapy.Raw].load):
+                print("[+] {} request".format(options.extension))
                 ack_list.append(scapy_packet[scapy.TCP].ack)
         # tcp sport = source (response)
         elif scapy_packet[scapy.TCP].sport == 80:
