@@ -58,6 +58,7 @@ def process_packet(packet):
                 ack_list.append(scapy_packet[scapy.TCP].ack)
         # tcp sport = source (response)
         elif scapy_packet[scapy.TCP].sport == 80:
+            # If it is a response we have been waiting for
             if scapy_packet[scapy.TCP].seq in ack_list:
                 ack_list.remove(scapy_packet[scapy.TCP].seq)
                 print("[+] Replacing Files")
