@@ -16,7 +16,7 @@ With many thanks to Black Hat, Gream and ZSecurity.
 - [x] [Packet sniffer](packet_sniffer)
 - [x] [DNS spoofer](dns_spoofer)
 - [x] [File interceptor](file_interceptor) 
-- [ ] [Code injector](code_injector) - in progress
+- [x] [Code injector](code_injector)
 - [ ] Bypassing HTTPS
 - [ ] ARP spoof detector
 
@@ -28,7 +28,7 @@ With many thanks to Black Hat, Gream and ZSecurity.
 ## Requirements
 
 * A small pentesting lab with kali and a windows 10 (virtual) machines. Host was an Ubuntu 20.04. 
-* Python 2.7 and Python 3. Most scripts support Python 3, only a few support Python 2.7 (and Python 3). We chose to use `pyenv`. See below.
+* Python 2.7 and Python 3. Most scripts only support Python 3, only a few, for learning purposes) support Python 2.7 (and also Python 3). We chose to use `pyenv`. See below.
 
 ### Testlab
 

