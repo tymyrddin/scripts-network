@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 For not missing the absolute basics, and in for in strictly 
 confined environments w/o networking tools or compilers, 

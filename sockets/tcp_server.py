@@ -1,9 +1,14 @@
+#!/usr/bin/env python3
+
 """
 For not missing the absolute basics, and in for in strictly 
 confined environments w/o networking tools or compilers, 
 copy/paste or connection to the internet.
 
 See http://docs.python.org/3/library/socket.html
+
+Can be expanded on for writing command shells or coding a proxy:
+a standard multi-threaded TCP server.
 """
 
 import socket
@@ -23,12 +28,12 @@ def main():
     # Listen to the connection and wait for the client
     # Maximum backlog of connections set to 5
     server.listen(5)
-    print(f"[*] Listening on {IP}:{PORT}")
+    print(f"[+] Listening on {IP}:{PORT}")
 
     while True:
         # The accept() method returns two values: client socket and address.
         client, address = server.accept()
-        print(f"[*] Accepted connection from {address[0]}:{address[1]}")
+        print(f"[+] Accepted connection from {address[0]}:{address[1]}")
         # Create a new thread object that points to the
         # handle_client function, and pass it the client socket object
         client_handler = threading.Thread(target=handle_client, args=(client,))

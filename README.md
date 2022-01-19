@@ -1,5 +1,8 @@
 # Network scripts
 
+Into the deepest depths of an enterprise target, there are usually no tools to execute network attacks, and no means to install anything.
+And in many cases, there is a Python install.
+
 Some python scripting network hacks and network system administration.
 With many thanks to Black Hat, Gream and ZSecurity.
 
