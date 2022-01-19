@@ -1,4 +1,4 @@
-# GSockets
+# Sockets
 
 Creating TCP servers in Python is just as easy as creating a client.
 
