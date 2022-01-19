@@ -15,11 +15,11 @@ Assumptions:
 
 import socket
 
-target_host = "www.duckduckgo.com"
-target_port = 80
+# target_host = "www.duckduckgo.com"
+# target_port = 80
 
-# IP = "0.0.0.0"
-# PORT = 9998
+target_host = "0.0.0.0"
+target_port = 9998
 
 # Create a socket object using the socket.socket() function of
 # the socket module. General syntax:
@@ -38,7 +38,8 @@ client.connect((target_host, target_port))
 # Send some data as bytes.
 # The method returns the number of bytes sent.
 
-client.send(b"GET / HTTP/1.1\r\nHost:  duckduckgo.com\r\n\r\n")
+# client.send(b"GET / HTTP/1.1\r\nHost:  duckduckgo.com\r\n\r\n")
+client.send(b"Hello Server")
 
 # Receive some data
 # The bufsize argument defines the maximum data it can
