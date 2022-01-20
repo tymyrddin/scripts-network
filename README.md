@@ -10,14 +10,14 @@ With many thanks to Black Hat, Gream and ZSecurity.
 - [x] [Sockets](sockets)
 - [x] [MAC changer](mac_changer)
 
-## Scapy on a local network
+## Using scapy
 - [x] [Network scanner](network_scanner)
 - [x] [ARP spoofer](arp_spoofer)
 - [x] [Packet sniffer](packet_sniffer)
 - [x] [DNS spoofer](dns_spoofer)
 - [x] [File interceptor](file_interceptor) 
 - [x] [Code injector](code_injector)
-- [ ] Bypassing HTTPS
+- [ ] Bypassing HTTPS - in progress
 - [ ] ARP spoof detector
 
 ## Socket based shells
@@ -28,7 +28,7 @@ With many thanks to Black Hat, Gream and ZSecurity.
 ## Requirements
 
 * A small pentesting lab with kali and a windows 10 (virtual) machines. Host was an Ubuntu 20.04. 
-* Python 2.7 and Python 3. Most scripts only support Python 3, only a few, for learning purposes) support Python 2.7 (and also Python 3). We chose to use `pyenv`. See below.
+* Python 2.7 and Python 3. Most scripts only support Python 3, only a few, for learning purposes, support Python 2.7 (and also Python 3).
 
 ### Testlab
 
@@ -63,61 +63,4 @@ Common errors:
 ```shell
 kali:~$ ImportError: No module named <Package Name>
 kali:~$ pip: command not found error
-```
-
-Messing about with system files for making scripts not being a good idea, we chose to use `pyenv` (after that pip for python package installs):
-
-```shell
-kali:~$ sudo apt install -y build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python3-openssl git
-```
-
-Run the installation script:
-
-```shell
-kali:~$ curl https://pyenv.run | bash
-```
-
-ZSH is the default shell in kali, hence edit the .zshrc file:
-
-```shell
-kali:~$ echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
-kali:~$ echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
-kali:~$ echo 'export PATH="$PYENV_ROOT/shims:$PATH"' >> ~/.zshrc
-```
-
-And to stop the machine finding the python executable in the `/usr/bin` directory first:
-```shell
-kali:~$ echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
-```
-
-If need be close terminal and open new terminal and run `eval "$(pyenv init -)"` or `source .zshrc`. 
-Check the changes with `echo $PATH`.
-
-Configure for having both available:
-
-```shell
-kali:~$ pyenv install 2.7.18
-kali:~$ python -V
-<number>
-kali:~$ pyenv install <number>
-```
-
-List versions available:
-```shell
-kali:~$ pyenv versions     
-* system (set by /home/<user>/.pyenv/version)
-  2.7.18
-  <number>
-```
-
-Set up virtual environment for the project or per subproject, for example:
-
-```shell
-kali:~$ cd ymrir/
-kali:~$ pyenv which python
-/usr/bin/python
-kali:~$ pyenv virtualenv 3.9.9 ymrir
-...
-kali:~$ pyenv local ymrir
-kali:~$ python -V
 ```
