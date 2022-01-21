@@ -1,5 +1,12 @@
 # File interceptor
 
+## Requirements
+
+* Root access
+* Python 3
+* Scapy
+* NetfilterQueue
+
 ## Usage
 
 ```shell

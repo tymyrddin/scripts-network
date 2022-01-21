@@ -1,5 +1,13 @@
 # Code injector
 
+## Requirements
+
+* Root access
+* Python 3
+* Scapy
+* NetfilterQueue
+* BeEF
+
 ## Usage
 
 ```shell
