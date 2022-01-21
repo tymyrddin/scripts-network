@@ -13,7 +13,7 @@ With many thanks to Black Hat, Gream and ZSecurity.
 ## Basics
 - [x] [MAC changer](mac_changer)
 - [x] [Sockets](sockets)
-- [ ] Netcat replace
+- [ ] [Netcat replace](netcat_replace) - in progress
 - [ ] TCP Proxy
 - [ ] SSH
 - [ ] Packet Sniffing
@@ -26,6 +26,6 @@ With many thanks to Black Hat, Gream and ZSecurity.
 - [x] [DNS spoofer](dns_spoofer)
 - [x] [File interceptor](file_interceptor) 
 - [x] [Code injector](code_injector)
-- [ ] Bypassing HTTPS - in progress
+- [ ] [Bypassing HTTPS](bypass_https) - in progress
 - [ ] ARP spoof detector
 
