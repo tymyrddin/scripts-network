@@ -19,11 +19,7 @@ With many thanks to Black Hat, Gream and ZSecurity.
 - [x] [Code injector](code_injector)
 - [ ] Bypassing HTTPS - in progress
 - [ ] ARP spoof detector
-
-## Socket based shells
-- [ ] TCP reverse shell
-- [ ] HTTP reverse shell
-- [ ] Scriptable shell
+- [ ] Netcat replace
 
 ## Requirements
 
