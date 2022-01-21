@@ -5,7 +5,7 @@ Most likely this includes the default router or gateway, causing any traffic fro
 
 There are many existing tools, like `arpspoof` that can do this.
 
-From the hacking machine to the victim machine:
+From the hacking machine to the victim machine and router:
 
 ```shell
 $ sudo arpspoof -i eth0 -t 192.168.122.75 192.168.122.1

