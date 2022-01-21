@@ -23,3 +23,7 @@ Example:
 $ sudo sysctl -w net.ipv4.ip_forward=1
 $ sudo python3 arp_spoofer.py -t 192.168.122.75 -s 192.168.122.1
 ```
+
+## Troubleshooting
+
+* [ImportError on Scapy](https://github.com/tymyrddin/ymrir/wiki/scapy.md)

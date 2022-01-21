@@ -52,3 +52,8 @@ Afterwards, do not forget to disable net.ipv4.ip_forward and to remove the creat
 $ sudo sysctl -w net.ipv4.ip_forward=0
 $ sudo iptables --flush
 ```
+
+## Troubleshooting
+
+* [ImportError on NetfilterQueue](https://github.com/tymyrddin/ymrir/wiki/netfilterqueue.md)
+* [ImportError on Scapy](https://github.com/tymyrddin/ymrir/wiki/scapy.md)

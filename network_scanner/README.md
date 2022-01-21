@@ -21,3 +21,7 @@ Example:
 ```shell
 $ sudo python3 network_scanner.py -t 192.168.122.1/24
 ```
+
+## Troubleshooting
+
+* [ImportError on Scapy](https://github.com/tymyrddin/ymrir/wiki/scapy.md)

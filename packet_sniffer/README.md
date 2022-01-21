@@ -19,3 +19,7 @@ Example:
 ```shell
 $ sudo python3 packet_sniffer.py -i eth0
 ```
+
+## Troubleshooting
+
+* [ImportError on Scapy](https://github.com/tymyrddin/ymrir/wiki/scapy.md)

