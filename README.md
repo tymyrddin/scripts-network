@@ -14,6 +14,10 @@ With many thanks to Black Hat, Gream and ZSecurity.
 - [x] [MAC changer](mac_changer)
 - [x] [Sockets](sockets)
 - [ ] Netcat replace
+- [ ] TCP Proxy
+- [ ] SSH
+- [ ] Packet Sniffing
+- [ ] Decoding the IP Layer
 
 ## Using scapy
 - [x] [Network scanner](network_scanner)
