@@ -12,7 +12,7 @@ Changing it can be useful for increasing anonymity, impersonating other devices 
 
 ## Usage
 
-```commandline
+```shell
 usage: mac_changer.py [-h] [-i INTERFACE] [-m NEW_MAC_ADDRESS]
 ```
 
