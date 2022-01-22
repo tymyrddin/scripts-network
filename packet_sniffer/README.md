@@ -5,7 +5,7 @@ Can be used to sniff packets on an interface of the hacking machine, and to .
 ## Requirements
 
 * Root access
-* Python 2 or 3
+* Python 3.9.9
 * Scapy
 
 ## Usage
@@ -13,8 +13,16 @@ Can be used to sniff packets on an interface of the hacking machine, and to .
 ```shell
 usage: packet_sniffer.py [-h] [-i INTERFACE]
 
-Example:
-        $ sudo python3 packet_sniffer.py -i eth0
+Packet sniffer
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INTERFACE, --interface INTERFACE
+                        interface to use
+
+Example: 
+            packet_sniffer.py -i eth0
+            packet_sniffer.py          # with default eth0
 ```
 ## Kicking the tyres
 
@@ -35,7 +43,7 @@ Start the sniffer:
 
 ```
 
-Go to sites in browser and view results in terminal where sniffer runs:
+Go to sites (for example http://testphp.vulnweb.com/login.php) in browser and view results in terminal where sniffer runs:
 
 ```shell
 @kali:~$ sudo python3 packet_sniffer.py
