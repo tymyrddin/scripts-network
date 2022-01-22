@@ -1,8 +1,6 @@
-#! /usr/bin/env python3
-
-import subprocess
-import argparse
-import re
+import argparse             # https://docs.python.org/3/library/argparse.html
+import re                   # https://docs.python.org/3/library/re.html
+import subprocess           # https://docs.python.org/3/library/subprocess.html
 
 
 def get_args():

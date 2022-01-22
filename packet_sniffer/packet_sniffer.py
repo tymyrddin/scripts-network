@@ -1,8 +1,7 @@
-#!/usr/bin/env python3
+from scapy.layers import http   # https://scapy.readthedocs.io/en/latest/api/scapy.layers.http.html
 
-import scapy.all as scapy
-from scapy.layers import http
-import argparse
+import argparse                 # https://docs.python.org/3/library/argparse.html
+import scapy.all as scapy       # https://scapy.readthedocs.io/en/latest/index.html
 
 
 def get_args():

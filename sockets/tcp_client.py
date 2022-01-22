@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 For not missing the absolute basics, and for in strictly
 confined environments w/o networking tools or compilers, 
@@ -13,7 +11,7 @@ Assumptions:
 * The server will always return data in a timely fashion.
 """
 
-import socket
+import socket       # https://docs.python.org/3/library/socket.html
 
 # target_host = "www.duckduckgo.com"
 # target_port = 80

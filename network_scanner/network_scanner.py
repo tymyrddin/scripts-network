@@ -1,7 +1,5 @@
-#! /usr/bin/env python3
-
-import scapy.all as scapy
-import argparse
+import argparse             # https://docs.python.org/3/library/argparse.html
+import scapy.all as scapy   # https://scapy.readthedocs.io/en/latest/index.html
 
 
 def get_args():

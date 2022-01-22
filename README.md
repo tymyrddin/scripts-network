@@ -11,12 +11,12 @@ With many thanks to [EONRaider](https://github.com/EONRaider), [BlackHat](https:
 
 The basics of ethical hacking and Python programming at the same time.
 
-- [x] [MAC changer](mac_changer) - modules, system commands, variables, strings, input, argument parsing, functions, conditional statements.
+- [x] [MAC changer](mac_changer) - module re, system commands, variables, strings, input, argument parsing, functions, conditional statements.
 - [x] [Network scanner](network_scanner) - scapy, combining frames, lists, escaping characters, dictionaries, iterating over nested data structures.
 - [x] [ARP spoofer](arp_spoofer) - scapy module, loops and counters, dynamic printing, exception handling
-- [x] [Packet sniffer](packet_sniffer) - scapy module, extracting data from a specific layer, strings and bytes (in python 3)
+- [x] [Packet sniffer](packet_sniffer) - scapy module, time module, extracting data from a specific layer, strings and bytes (in python 3)
 - [x] [DNS spoofer](dns_spoofer) - scapy module, creating a proxy, converting, filtering, analysing and modifying packets
-- [x] [File interceptor](file_interceptor) - filtering, analysing, intercepting, and modifying http requests, replacing downloads on the network
+- [x] [File interceptor](file_interceptor) - scapy module, filtering, analysing, intercepting, and modifying http requests, replacing downloads on the network
 - [x] [Code injector](code_injector) - regex, groups and None-capturing regex, decoding http responses, injecting JS code, recalculating content length, integrating BeEF
 - [ ] [Bypassing HTTPS](bypass_https) - sniffing login credentials, replacing downloads on https pages, injecting code in https pages
 - [ ] ARP spoof detector - python on Windows, capturing and analysing ARP responses, detecting ARP spoofing

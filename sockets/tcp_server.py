@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 For not missing the absolute basics, and in for in strictly 
 confined environments w/o networking tools or compilers, 
@@ -11,8 +9,8 @@ Can be expanded on for writing command shells or coding a proxy:
 a standard multi-threaded TCP server.
 """
 
-import socket
-import threading
+import socket       # https://docs.python.org/3/library/socket.html
+import threading    # https://docs.python.org/3/library/threading.html
 
 
 # IP address and port we want the server to listen on

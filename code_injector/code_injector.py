@@ -1,13 +1,10 @@
-#!/usr/bin/env python3
-
-import re
-
-import subprocess
-import netfilterqueue
-import scapy.all as scapy
-import argparse
-import os
-import sys
+import argparse             # https://docs.python.org/3/library/argparse.html
+import netfilterqueue       # https://github.com/oremanj/python-netfilterqueue
+import os                   # https://docs.python.org/3/library/os.html
+import re                   # https://docs.python.org/3/library/re.html
+import scapy.all as scapy   # https://scapy.readthedocs.io/en/latest/index.html
+import subprocess           # https://docs.python.org/3/library/subprocess.html
+import sys                  # https://docs.python.org/3/library/sys.html
 
 
 def is_not_root():

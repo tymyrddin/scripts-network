@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 For not missing the absolute basics, and in for in strictly 
 confined environments w/o networking tools or compilers, 
@@ -9,7 +7,7 @@ See http://docs.python.org/3/library/socket.html
 """
 
 
-import socket
+import socket       # https://docs.python.org/3/library/socket.html
 
 target_host = "127.0.0.1"
 target_port = 9997
