@@ -14,14 +14,20 @@ There are many existing tools like [arpspoof](https://github.com/tymyrddin/nest-
 ## Usage
 
 ```shell
-usage: arp_spoofer.py [-h] [-t TARGET_IP] [-s SPOOF_IP]
-```
+usage: arp_spoofer.py [-h] [-t TARGET] [-r ROUTER]
 
-Example:
+ARP spoof tool
 
-```shell
-$ sudo sysctl -w net.ipv4.ip_forward=1
-$ sudo python3 arp_spoofer.py -t 192.168.122.75 -s 192.168.122.1
+optional arguments:
+  -h, --help            show this help message and exit
+  -t TARGET, --target TARGET
+                        target IP address
+  -r ROUTER, --router ROUTER
+                        spoof this IP address
+
+Example: 
+            arp_spoofer.py -t 192.168.122.75 -s 192.168.122.1
+            arp_spoofer.py  # with defaults -t 192.168.122.75 -s 192.168.122.1                                                                      
 ```
 
 ## Troubleshooting
