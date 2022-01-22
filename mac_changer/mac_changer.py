@@ -1,24 +1,30 @@
-import argparse             # https://docs.python.org/3/library/argparse.html
-import re                   # https://docs.python.org/3/library/re.html
-import subprocess           # https://docs.python.org/3/library/subprocess.html
+#!/usr/bin/env python3
+
+import argparse     # https://docs.python.org/3/library/argparse.html
+import os           # https://docs.python.org/3/library/os.html
+import re           # https://docs.python.org/3/library/re.html
+import subprocess   # https://docs.python.org/3/library/subprocess.html
+import sys          # https://docs.python.org/3/library/sys.html
+import textwrap     # https://docs.python.org/3/library/textwrap.html
+
+
+def is_not_root():
+    return os.geteuid() != 0
 
 
 def get_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "-i",
-        "--interface",
-        dest="interface",
-        help="interface to change MAC address for",
+    parser = argparse.ArgumentParser(
+        description="MAC address changer tool",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=textwrap.dedent(
+            """Example: 
+            mac_changer.py --i eth0 -m 00:11:11:11:22:55
+        """
+        ),
     )
-    parser.add_argument("-m", "--mac", dest="new_mac_address", help="new MAC address")
+    parser.add_argument("-i", "--interface", default="eth0", help="interface to change MAC address for")
+    parser.add_argument("-m", "--mac", default="52:54:00:99:3d:f3", help="new MAC address")
     values = parser.parse_args()
-    if not values.interface:
-        parser.error("[-] Please specify an interface, use --help for more information")
-    if not values.new_mac_address:
-        parser.error(
-            "[-] Please specify a new MAC address, use --help for more information"
-        )
     return values
 
 
@@ -40,12 +46,16 @@ def get_mac(interface):
         print("[-] No MAC address found for this interface")
 
 
-options = get_args()
-mac = get_mac(options.interface)
-print("[+] Current MAC address: " + str(mac))
-change_mac(options.interface, options.new_mac_address)
-mac = get_mac(options.interface)
-if mac == options.new_mac_address:
-    print("[+] Success. MAC address has changed to " + mac)
-else:
-    print("[-] MAC address did not get changed.")
+if __name__ == "__main__":
+    if is_not_root():
+        sys.exit("[-] This script requires superuser privileges.")
+
+    options = get_args()
+    mac = get_mac(options.interface)
+    print("[+] Current MAC address: " + str(mac))
+    change_mac(options.interface, options.mac)
+    mac = get_mac(options.interface)
+    if mac == options.mac:
+        print("[+] MAC address has changed to " + mac)
+    else:
+        print("[-] MAC address did not get changed.")
