@@ -74,6 +74,5 @@ if __name__ == "__main__":
     if is_not_root():
         sys.exit("[-] This script requires superuser privileges.")
 
-    # For example, for eth0, test on http://testphp.vulnweb.com/login.php
     options = get_args()
     sniff(options.interface)
