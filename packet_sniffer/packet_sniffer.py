@@ -1,15 +1,31 @@
+#!/usr/bin/env python3
+
 from scapy.layers import http   # https://scapy.readthedocs.io/en/latest/api/scapy.layers.http.html
 
 import argparse                 # https://docs.python.org/3/library/argparse.html
+import os                       # https://docs.python.org/3/library/os.html
 import scapy.all as scapy       # https://scapy.readthedocs.io/en/latest/index.html
+import sys                      # https://docs.python.org/3/library/sys.html
+import textwrap                 # https://docs.python.org/3/library/textwrap.html
+
+
+def is_not_root():
+    return os.geteuid() != 0
 
 
 def get_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--interface", dest="interface", help="interface to use")
+    parser = argparse.ArgumentParser(
+        description="Packet sniffer",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=textwrap.dedent(
+            """Example: 
+            packet_sniffer.py -i eth0
+            packet_sniffer.py          # with default eth0
+        """
+        ),
+    )
+    parser.add_argument("-i", "--interface", default="eth0", help="interface to use")
     values = parser.parse_args()
-    if not values.interface:
-        parser.error("[-] Please specify an interface, use --help for more information")
     return values
 
 
@@ -51,9 +67,13 @@ def process_sniffed_packet(packet):
         print("[+] HTTP Request >> " + url.decode())
         login_info = get_login_info(packet)
         if login_info:
-            print("\n\n[+] Possible username/password >> " + login_info + "\n\n")
+            print("\n[+] Possible username/password >> " + login_info + "\n")
 
 
-# For example, for eth0, test on http://testphp.vulnweb.com/login.php
-options = get_args()
-sniff(options.interface)
+if __name__ == "__main__":
+    if is_not_root():
+        sys.exit("[-] This script requires superuser privileges.")
+
+    # For example, for eth0, test on http://testphp.vulnweb.com/login.php
+    options = get_args()
+    sniff(options.interface)
