@@ -57,3 +57,5 @@ Go to sites (for example http://testphp.vulnweb.com/login.php) in browser and vi
 ## Troubleshooting
 
 * [ImportError on Scapy](https://github.com/tymyrddin/ymrir/wiki/scapy.md)
+* [Bettercap sslstrip not working](https://github.com/tymyrddin/ymrir/wiki/bettercap.md)
+* [Undesired HTTPS redirects](https://github.com/tymyrddin/ymrir/wiki/https-browser.md)
