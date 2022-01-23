@@ -2,7 +2,7 @@
 
 ## Requirements
 
-* Python 2 or 3
+* Python 3
 * Scapy and netfilter modules
 * Domain to be spoofed
 * IP address webserver to redirect to
