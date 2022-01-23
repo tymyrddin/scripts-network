@@ -43,7 +43,8 @@ def apache_start():
         subprocess.call("service apache2 start", shell=True)
 
 
-def set_queue(destination, qnum):
+def run_queue(destination, qnum):
+    print("[+] Creating iptables queue(s)")
     if destination == "forward":
         subprocess.call(
             "iptables -I FORWARD -j NFQUEUE --queue-num {}".format(qnum),
@@ -70,9 +71,10 @@ def set_queue(destination, qnum):
 
 
 def restore():
+    print("[+] Flushing iptables queue(s)")
     subprocess.call("iptables --flush", shell=True)
+    print("[+] Stopping apache server")
     subprocess.call("service apache2 stop", shell=True)
-    print("[+] Done")
 
 
 def forge_packet(packet):
@@ -122,7 +124,8 @@ if __name__ == "__main__":
     options = get_args()
     try:
         apache_start()
-        set_queue(options.destination, 3)
+        run_queue(options.destination, 3)
     except KeyboardInterrupt:
-        print("[+] \nDetected CTRL+C ... Restoring normal connections and flush iptables queue(s) ...")
+        print("\n[+] Detected CTRL+C ... ")
         restore()
+        print("[+] Done")
