@@ -10,20 +10,23 @@
 ## Usage
 
 ```shell
-$ sudo iptables -I FORWARD -j NFQUEUE --queue-num 0
-```
+usage: dns_spoofer.py [-h] [-d DOMAIN] [-r IP] [-q DESTINATION]
 
-or
+DNS spoof tool
 
-```shell
-$ sudo iptables -I OUTPUT -j NFQUEUE --queue-num 0
-$ sudo iptables -I INPUT -j NFQUEUE --queue-num 0
-```
+optional arguments:
+  -h, --help            show this help message and exit
+  -d DOMAIN, --domain DOMAIN
+                        Domain to spoof
+  -r IP, --ip IP        IP address to redirect to
+  -q DESTINATION, --destination DESTINATION
+                        Forward or local
 
-## Usage
-
-```shell
-usage: dns_spoofer.py [-h] [-d DOMAIN] [-r IP]
+Example: 
+            dns_spoofer.py -q forward               # spoof domain on target (Windows)
+            dns_spoofer.py -d sqa.fyicenter.com     # domain
+            dns_spoofer.py -r 192.168.122.108       # redirection address
+            dns_spoofer.py                          # with defaults local, apache2 and sqa.fyicenter.com
 ```
 
 ### Kicking the tyres

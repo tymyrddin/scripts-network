@@ -22,7 +22,7 @@ def get_args():
             dns_spoofer.py -q forward               # spoof domain on target (Windows)
             dns_spoofer.py -d sqa.fyicenter.com     # domain
             dns_spoofer.py -r 192.168.122.108       # redirection address
-            dns_spoofer.py                          # with defaults local, apache2 and fyicenter.com
+            dns_spoofer.py                          # with defaults local, apache2 and sqa.fyicenter.com
         """
         ),
     )
