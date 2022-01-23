@@ -1,11 +1,11 @@
 # Packet sniffer
 
-Can be used to sniff packets on an interface of the hacking machine, and to .
+Can be used to sniff packets on an interface of the hacking machine.
 
 ## Requirements
 
 * Root access
-* Python 3.9.9
+* Python 3
 * Scapy
 
 ## Usage
@@ -52,12 +52,6 @@ Go to sites (for example http://testphp.vulnweb.com/login.php) in browser and vi
 
 [+] Possible username/password >> b'uname=test&pass=test'
 
-[+] HTTP Request >> sqa.fyicenter.com/1000395_Selenium_Tutorials.html
-[+] HTTP Request >> sqa.fyicenter.com/getCommForm.php
-[+] HTTP Request >> sqa.fyicenter.com/getCommList.php?ID=1000395&P=0
-[+] HTTP Request >> sqa.fyicenter.com/getCommList.php?ID=1000395&P=0
-[+] HTTP Request >> sqa.fyicenter.com/Selenium/_icon_Selenium.png
-[+] HTTP Request >> sqa.fyicenter.com/SQL-Server-Storage/_icon_SQL-Server-Storage.png
 ```
 
 ## Troubleshooting

