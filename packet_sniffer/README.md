@@ -43,7 +43,9 @@ Start the sniffer:
 
 ```
 
-Go to sites (for example http://testphp.vulnweb.com/login.php) in browser and view results in terminal where sniffer runs:
+Go to sites (for example http://testphp.vulnweb.com/login.php) in browser. If you wish to see results for https sites, fire up the Bettercap hstshijack caplet.
+
+View results in terminal where sniffer runs:
 
 ```shell
 @kali:~$ sudo python3 packet_sniffer.py
