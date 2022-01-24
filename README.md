@@ -22,8 +22,8 @@ And in many cases, a Python install can be found ...
 - [x] [File interceptor](file_interceptor) 
 - [x] [Code injector](code_injector)
 - [x] [Sockets](sockets) 
-- [x] [Netcat replace](netcat_replace) 
-- [ ] TCP proxy                            <- in progress
+- [x] [Netcat replace](netcat_replace)     <- in progress
+- [ ] TCP proxy                            
 - [ ] SSH tunneling
 - [ ] Decoding the IP Layer
 
