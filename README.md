@@ -21,7 +21,6 @@ And in many cases, a Python install can be found ...
 - [x] [DNS spoofer](dns_spoofer) 
 - [x] [File interceptor](file_interceptor) 
 - [x] [Code injector](code_injector)
-- [ ] ARP spoof detector                   <- in progress
 - [x] [Sockets](sockets) 
 - [x] [Netcat replace](netcat_replace) 
 - [ ] TCP proxy                            <- in progress
