@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import argparse  # https://docs.python.org/3/library/argparse.html
 import netfilterqueue  # https://github.com/oremanj/python-netfilterqueue
 import os  # https://docs.python.org/3/library/os.html
