@@ -1,11 +1,13 @@
-import argparse     # https://docs.python.org/3/library/argparse.html
-import os           # https://docs.python.org/3/library/os.html
-import shlex        # https://docs.python.org/3/library/shlex.html
-import socket       # https://docs.python.org/3/library/socket.html
-import subprocess   # https://docs.python.org/3/library/subprocess.html
-import sys          # https://docs.python.org/3/library/sys.html
-import textwrap     # https://docs.python.org/3/library/textwrap.html
-import threading    # https://docs.python.org/3/library/threading.html
+#!/usr/bin/env python3
+
+import argparse  # https://docs.python.org/3/library/argparse.html
+import os  # https://docs.python.org/3/library/os.html
+import shlex  # https://docs.python.org/3/library/shlex.html
+import socket  # https://docs.python.org/3/library/socket.html
+import subprocess  # https://docs.python.org/3/library/subprocess.html
+import sys  # https://docs.python.org/3/library/sys.html
+import textwrap  # https://docs.python.org/3/library/textwrap.html
+import threading  # https://docs.python.org/3/library/threading.html
 
 
 def is_not_root():
@@ -28,7 +30,7 @@ def get_args():
     # to the listener side of the communication. The sender side makes the connection to the
     # listener, and so it only needs the -t and -p arguments to define the target listener.
     parser = argparse.ArgumentParser(
-        description="Netcat replacement Tool",
+        description="Netcat replacement tool",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=textwrap.dedent(
             """Example: 

@@ -34,4 +34,6 @@ Example:
             netcat.py -t 192.168.1.108 -p 5555 # connect to server
 ```
 
+## Kick the Tyres
+
 Play in the lab!
