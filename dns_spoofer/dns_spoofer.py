@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
-import argparse             # https://docs.python.org/3/library/argparse.html
-import netfilterqueue       # https://github.com/oremanj/python-netfilterqueue
-import os                   # https://docs.python.org/3/library/os.html
-import scapy.all as scapy   # https://scapy.readthedocs.io/en/latest/index.html
-import subprocess           # https://docs.python.org/3/library/subprocess.html
-import sys                  # https://docs.python.org/3/library/sys.html
-import textwrap             # https://docs.python.org/3/library/textwrap.html
+import argparse  # https://docs.python.org/3/library/argparse.html
+import netfilterqueue  # https://github.com/oremanj/python-netfilterqueue
+import os  # https://docs.python.org/3/library/os.html
+import scapy.all as scapy  # https://scapy.readthedocs.io/en/latest/index.html
+import subprocess  # https://docs.python.org/3/library/subprocess.html
+import sys  # https://docs.python.org/3/library/sys.html
+import textwrap  # https://docs.python.org/3/library/textwrap.html
 
 
 def is_not_root():
@@ -26,8 +26,12 @@ def get_args():
         """
         ),
     )
-    parser.add_argument("-d", "--domain", default="sqa.fyicenter.com", help="Domain to spoof")
-    parser.add_argument("-r", "--ip", default="192.168.122.108", help="IP address to redirect to")
+    parser.add_argument(
+        "-d", "--domain", default="sqa.fyicenter.com", help="Domain to spoof"
+    )
+    parser.add_argument(
+        "-r", "--ip", default="192.168.122.108", help="IP address to redirect to"
+    )
     parser.add_argument("-q", "--destination", default="local", help="Forward or local")
     values = parser.parse_args()
     return values

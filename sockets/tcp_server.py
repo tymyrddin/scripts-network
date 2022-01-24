@@ -9,8 +9,8 @@ Can be expanded on for writing command shells or coding a proxy:
 a standard multi-threaded TCP server.
 """
 
-import socket       # https://docs.python.org/3/library/socket.html
-import threading    # https://docs.python.org/3/library/threading.html
+import socket  # https://docs.python.org/3/library/socket.html
+import threading  # https://docs.python.org/3/library/threading.html
 
 
 # IP address and port we want the server to listen on

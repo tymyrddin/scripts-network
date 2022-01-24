@@ -11,7 +11,7 @@ Assumptions:
 * The server will always return data in a timely fashion.
 """
 
-import socket       # https://docs.python.org/3/library/socket.html
+import socket  # https://docs.python.org/3/library/socket.html
 
 # target_host = "www.duckduckgo.com"
 # target_port = 80

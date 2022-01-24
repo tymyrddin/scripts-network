@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
-import argparse             # https://docs.python.org/3/library/argparse.html
-import os                   # https://docs.python.org/3/library/os.html
-import scapy.all as scapy   # https://scapy.readthedocs.io/en/latest/index.html
-import subprocess           # https://docs.python.org/3/library/subprocess.html
-import time                 # https://docs.python.org/3/library/time.html
-import sys                  # https://docs.python.org/3/library/sys.html
-import textwrap             # https://docs.python.org/3/library/textwrap.html
+import argparse  # https://docs.python.org/3/library/argparse.html
+import os  # https://docs.python.org/3/library/os.html
+import scapy.all as scapy  # https://scapy.readthedocs.io/en/latest/index.html
+import subprocess  # https://docs.python.org/3/library/subprocess.html
+import time  # https://docs.python.org/3/library/time.html
+import sys  # https://docs.python.org/3/library/sys.html
+import textwrap  # https://docs.python.org/3/library/textwrap.html
 
 
 def is_not_root():
@@ -24,8 +24,12 @@ def get_args():
         """
         ),
     )
-    parser.add_argument("-t", "--target", default="192.168.122.75", help="target IP address")
-    parser.add_argument("-r", "--router", default="192.168.122.1", help="spoof this IP address")
+    parser.add_argument(
+        "-t", "--target", default="192.168.122.75", help="target IP address"
+    )
+    parser.add_argument(
+        "-r", "--router", default="192.168.122.1", help="spoof this IP address"
+    )
     values = parser.parse_args()
     return values
 

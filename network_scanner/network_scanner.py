@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-import argparse             # https://docs.python.org/3/library/argparse.html
-import os                   # https://docs.python.org/3/library/os.html
-import scapy.all as scapy   # https://scapy.readthedocs.io/en/latest/index.html
-import sys                  # https://docs.python.org/3/library/sys.html
-import textwrap             # https://docs.python.org/3/library/textwrap.html
+import argparse  # https://docs.python.org/3/library/argparse.html
+import os  # https://docs.python.org/3/library/os.html
+import scapy.all as scapy  # https://scapy.readthedocs.io/en/latest/index.html
+import sys  # https://docs.python.org/3/library/sys.html
+import textwrap  # https://docs.python.org/3/library/textwrap.html
 
 
 def is_not_root():
@@ -22,7 +22,9 @@ def get_args():
         """
         ),
     )
-    parser.add_argument("-t", "--ip", default="192.168.122.1/24", help="IP address range")
+    parser.add_argument(
+        "-t", "--ip", default="192.168.122.1/24", help="IP address range"
+    )
     values = parser.parse_args()
     return values
 

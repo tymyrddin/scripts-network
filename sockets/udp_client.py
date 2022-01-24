@@ -7,7 +7,7 @@ See http://docs.python.org/3/library/socket.html
 """
 
 
-import socket       # https://docs.python.org/3/library/socket.html
+import socket  # https://docs.python.org/3/library/socket.html
 
 target_host = "127.0.0.1"
 target_port = 9997

@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
-import argparse     # https://docs.python.org/3/library/argparse.html
-import os           # https://docs.python.org/3/library/os.html
-import re           # https://docs.python.org/3/library/re.html
-import subprocess   # https://docs.python.org/3/library/subprocess.html
-import sys          # https://docs.python.org/3/library/sys.html
-import textwrap     # https://docs.python.org/3/library/textwrap.html
+import argparse  # https://docs.python.org/3/library/argparse.html
+import os  # https://docs.python.org/3/library/os.html
+import re  # https://docs.python.org/3/library/re.html
+import subprocess  # https://docs.python.org/3/library/subprocess.html
+import sys  # https://docs.python.org/3/library/sys.html
+import textwrap  # https://docs.python.org/3/library/textwrap.html
 
 
 def is_not_root():
@@ -22,8 +22,12 @@ def get_args():
         """
         ),
     )
-    parser.add_argument("-i", "--interface", default="eth0", help="interface to change MAC address for")
-    parser.add_argument("-m", "--mac", default="52:54:00:99:3d:f3", help="new MAC address")
+    parser.add_argument(
+        "-i", "--interface", default="eth0", help="interface to change MAC address for"
+    )
+    parser.add_argument(
+        "-m", "--mac", default="52:54:00:99:3d:f3", help="new MAC address"
+    )
     values = parser.parse_args()
     return values
 

