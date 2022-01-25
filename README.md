@@ -7,7 +7,7 @@ With many thanks to [EONRaider](https://github.com/EONRaider), [BlackHat](https:
 
 * [A small pentesting lab](https://github.com/tymyrddin/ymrir/wiki/pentesting-lab.md) with Kali and a Windows 10 (virtual) machines. Host was an Ubuntu 20.04. 
 * Most scripts only support Python 3, only a few, for learning purposes, support Python 2.7 (and also Python 3). And [Python 2.7 causes lots of bugs due to end of life](https://github.com/tymyrddin/ymrir/wiki/python-2.7-end-of-life.md).
-* The scripts have defaults set for our lab. If you wish to run these, change the defaults to your context or provide argumants.
+* The scripts have defaults set for our lab. If you wish to run these, change the defaults to your context or provide arguments.
 
 ## Scripts
 
