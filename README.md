@@ -1,6 +1,6 @@
 # Network scripts
 
-Some python scripting network hacks and network system administration for learning python the non-boring way in a familiar domain (or vv).
+Some python scripting network hacks and network system administration for practising with python the non-boring way in a familiar domain (or vv).
 With many thanks to [EONRaider](https://github.com/EONRaider), [BlackHat](https://www.blackhat.com/), and [ZSecurity](https://zsecurity.org/).
 
 ## Requirements
