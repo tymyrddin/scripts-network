@@ -5,11 +5,7 @@ With many thanks to [EONRaider](https://github.com/EONRaider), [BlackHat](https:
 
 ## Requirements
 
-* [A small pentesting lab](https://github.com/tymyrddin/ymrir/wiki/pentesting-lab.md) with Kali and a Windows 10 (virtual) machines. Host was an Ubuntu 20.04. 
-* Most scripts only support Python 3, only a few, for learning purposes, support Python 2.7 (and also Python 3). And [Python 2.7 causes lots of bugs due to end of life](https://github.com/tymyrddin/ymrir/wiki/python-2.7-end-of-life.md).
-* The scripts have defaults set for our lab. If you wish to run these, change the defaults to your context or provide arguments.
-
-<img align="left" src="https://github.com/tymyrddin/darkest-forest/blob/main/assets/images/warning.png">_Do not implement and execute these on a network or system you do not own. Execute only on [your own systems for learning purposes](https://github.com/tymyrddin/ymrir/wiki). Do not execute these on any production network or system, unless "Rules of engagement" have been agreed on, and you have a "Get out of jail free" card of some sort._
+<img align="left" src="https://github.com/tymyrddin/darkest-forest/blob/main/assets/images/warning.png">_Do not implement and execute these on a network or system you do not own. Execute only on [your own systems for learning purposes](https://github.com/tymyrddin/ymrir/wiki). Do not execute these on any production network or system, unless "Rules of engagement" have been agreed on, and you have a "Get out of jail free" card of some sort. The scripts have defaults set for our lab. If you wish to run these scripts, change the defaults for your context or provide arguments._
 
 ## Scripts
 
