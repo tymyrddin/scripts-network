@@ -21,6 +21,5 @@ Example:
 
 ## Kicking the Tyres
 
-* Put the script in startup folder to run when the system boots
 * Put in `/etc/init.d/script.py` and make executable `sudo chmod 755 /etc/init.d/scipt.py`
 * Register the script to be run at startup with `sudo update-rc.d superscript defaults`
