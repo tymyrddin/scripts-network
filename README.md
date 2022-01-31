@@ -21,7 +21,7 @@ And in many cases, a Python install can be found ...
 - [x] [Code injector](code_injector)
 - [x] [Execute system commands](execute_commands)
 - [x] [Keylogger](keylogger) 
-- [x] [Sockets](sockets) 
+- [x] [Client-server skeleton](client-server) 
 - [x] [Backdoor](backdoor)    <- in progress
 - [x] [Netcat replace](netcat_replace)     <- in progress
 - [ ] TCP proxy                            

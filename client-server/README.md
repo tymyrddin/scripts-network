@@ -1,4 +1,4 @@
-# Sockets
+# Client-server skeleton
 
 For not missing the absolute basics, and in for in strictly confined environments w/o networking tools or compilers, copy/paste or connection to the internet.
 
@@ -9,10 +9,7 @@ Assumptions:
 
 ## Requirements
 
-* Python 3
-* Root access
-* Sockets
-* Threading
+* Python 3, Root access, sockets and threading modules
 
 ## Scripts
 
@@ -20,7 +17,7 @@ Assumptions:
 - [x] [TCP client](tcp_client.py)
 - [x] [UDP client](udp_client.py)
 
-## Usage
+## Kicking the Tyres
 
 In one terminal with a virtual environment activated run the server script:
 
