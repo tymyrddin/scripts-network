@@ -1,13 +1,4 @@
-"""
-For not missing the absolute basics, and in for in strictly 
-confined environments w/o networking tools or compilers, 
-copy/paste or connection to the internet.
-
-See http://docs.python.org/3/library/socket.html
-
-Can be expanded on for writing command shells or coding a proxy:
-a standard multi-threaded TCP server.
-"""
+#!/usr/bin/env python3
 
 import socket  # https://docs.python.org/3/library/socket.html
 import threading  # https://docs.python.org/3/library/threading.html

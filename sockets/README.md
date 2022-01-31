@@ -1,6 +1,11 @@
 # Sockets
 
-Creating TCP servers in Python is just as easy as creating a client.
+For not missing the absolute basics, and in for in strictly confined environments w/o networking tools or compilers, copy/paste or connection to the internet.
+
+Assumptions:
+* Connection will always succeed.
+* The server expects us to be sent data first.
+* The server will always return data in a timely fashion.
 
 ## Requirements
 
@@ -9,16 +14,22 @@ Creating TCP servers in Python is just as easy as creating a client.
 * Sockets
 * Threading
 
+## Scripts
+
+- [x] A standard multi-threaded [TCP server](tcp_server.py): Can be expanded on for writing command shells or coding a proxy.
+- [x] [TCP client](tcp_client.py)
+- [x] [UDP client](udp_client.py)
+
 ## Usage
 
-In one terminal with a virtual environment activated run the [tcp_server.py](tcp_server.py) script:
+In one terminal with a virtual environment activated run the server script:
 
 ```shell
 $ python tcp_server.py    
 [*] Listening on 0.0.0.0:9998
 ```
 
-Then start the [tcp_client.py](tcp_client.py) script in another terminal (also with the virtual environment activated):
+Then start the client script in another terminal (also with the virtual environment activated):
 
 ```shell
 $ python tcp_client.py

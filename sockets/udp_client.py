@@ -1,11 +1,4 @@
-"""
-For not missing the absolute basics, and in for in strictly 
-confined environments w/o networking tools or compilers, 
-copy/paste or connection to the internet.
-
-See http://docs.python.org/3/library/socket.html
-"""
-
+#!/usr/bin/env python3
 
 import socket  # https://docs.python.org/3/library/socket.html
 

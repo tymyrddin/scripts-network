@@ -1,15 +1,4 @@
-"""
-For not missing the absolute basics, and for in strictly
-confined environments w/o networking tools or compilers, 
-copy/paste or connection to the internet.
-
-See http://docs.python.org/3/library/socket.html
-
-Assumptions:
-* Connection will always succeed.
-* The server expects us to be sent data first.
-* The server will always return data in a timely fashion.
-"""
+#!/usr/bin/env python3
 
 import socket  # https://docs.python.org/3/library/socket.html
 
