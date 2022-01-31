@@ -19,14 +19,14 @@ Assumptions:
 
 ## Kicking the Tyres
 
-In one terminal with a virtual environment activated run the server script:
+In one terminal run the server script:
 
 ```shell
 $ python tcp_server.py    
 [*] Listening on 0.0.0.0:9998
 ```
 
-Then start the client script in another terminal (also with the virtual environment activated):
+Then start the client script in the Windows VM:
 
 ```shell
 $ python tcp_client.py

