@@ -5,8 +5,8 @@ import socket  # https://docs.python.org/3/library/socket.html
 # target_host = "www.duckduckgo.com"
 # target_port = 80
 
-target_host = "0.0.0.0"
-target_port = 9998
+target_host = "192.168.122.108"
+target_port = 4444
 
 # Create a socket object using the socket.socket() function of
 # the socket module. General syntax:

