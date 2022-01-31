@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 
-import socket  # https://docs.python.org/3/library/socket.html
-import json  # https://docs.python.org/3/library/json.html
 import base64  # https://docs.python.org/3/library/base64.html
+import json  # https://docs.python.org/3/library/json.html
+import socket  # https://docs.python.org/3/library/socket.html
 
 
 class Listener:
-
     def __init__(self, ip, port):
         listener = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
