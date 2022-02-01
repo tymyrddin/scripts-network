@@ -1,1 +1,0 @@
-backdoor> ..\venv\Scripts\python.exe .\reverse_backdoor.py
