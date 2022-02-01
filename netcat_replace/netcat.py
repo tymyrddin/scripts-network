@@ -14,17 +14,18 @@ def is_not_root():
     return os.geteuid() != 0
 
 
-# Run a command and return the output
+# Receive and run a command; return the output as a string
 def run_command(cmd):
     # Trim (newline)
     cmd = cmd.rstrip()
     if not cmd:
         return
+    # Run a command on the local OS and returns the output from the command
     output = subprocess.check_output(shlex.split(cmd), stderr=subprocess.STDOUT)
     return output.decode()
 
 
-# Create a command line interface
+# Create a command line interface and handle command line arguments
 def get_args():
     # The -c , -e , and -u arguments imply the -l argument, because those arguments only apply
     # to the listener side of the communication. The sender side makes the connection to the

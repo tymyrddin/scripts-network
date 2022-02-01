@@ -26,7 +26,10 @@ And in many cases, a Python install can be found ...
 - [x] [Netcat replace](netcat_replace)
 - [x] [TCP proxy](tcp_proxy)      <= in progress
 - [ ] SSH tunneling
-- [ ] Decoding the IP Layer
+- [ ] UDP host discovery
+- [ ] IP decoder
+- [ ] ICMP decoder
+
 
 ## Problems or Suggestions
 
