@@ -50,6 +50,7 @@ class Listener:
             command = input(">> ")
             command = command.split(" ")
 
+            # noinspection PyBroadException
             try:
                 if command[0] == "upload":
                     file_content = self.read_file(command[1])

