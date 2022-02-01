@@ -13,18 +13,18 @@ Into the deepest depths of an enterprise target, there are usually no tools to e
 And in many cases, a Python install can be found ...
 
 - [x] [MAC changer](mac_changer)
-- [x] [Network scanner](network_scanner) 
-- [x] [ARP spoofer](arp_spoofer) 
-- [x] [Packet sniffer](packet_sniffer) 
-- [x] [DNS spoofer](dns_spoofer) 
-- [x] [File interceptor](file_interceptor) 
+- [x] [Network scanner](network_scanner)
+- [x] [ARP spoofer](arp_spoofer)
+- [x] [Packet sniffer](packet_sniffer)
+- [x] [DNS spoofer](dns_spoofer)
+- [x] [File interceptor](file_interceptor)
 - [x] [Code injector](code_injector)
 - [x] [Execute system commands](execute_commands)
-- [x] [Keylogger](keylogger) 
-- [x] [Client-server skeleton](client-server) 
-- [x] [Backdoor](backdoor)    <- in progress
-- [x] [Netcat replace](netcat_replace)     <- in progress
-- [ ] TCP proxy                            
+- [x] [Keylogger](keylogger)
+- [x] [Client-server skeleton](client-server)
+- [x] [Backdoor](backdoor)
+- [x] [Netcat replace](netcat_replace)
+- [x] [TCP proxy](tcp_proxy)      <= in progress
 - [ ] SSH tunneling
 - [ ] Decoding the IP Layer
 

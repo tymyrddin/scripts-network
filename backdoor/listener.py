@@ -50,7 +50,6 @@ class Listener:
             command = input(">> ")
             command = command.split(" ")
 
-            # noinspection PyBroadException
             try:
                 if command[0] == "upload":
                     file_content = self.read_file(command[1])
@@ -61,8 +60,8 @@ class Listener:
                 if command[0] == "download" and "[-] Error " not in result:
                     result = self.write_file(command[1], result)
 
-            except Exception:
-                result = "[-] Error during command execution"
+            except Exception as e:
+                result = f"[-] Error during command execution: {e}"
 
             print(result)
 
