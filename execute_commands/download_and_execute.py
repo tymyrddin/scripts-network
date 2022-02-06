@@ -3,7 +3,7 @@
 # Run on the Windows 10 VM
 
 import os  # https://docs.python.org/3/library/os.html
-import requests  # https://docs.python-requests.org/en/latest/
+import requests  # https://docs.python-requests.org/en/2.5.1/
 import subprocess  # https://docs.python.org/3/library/subprocess.html
 import tempfile  # https://docs.python.org/3/library/tempfile.html
 
