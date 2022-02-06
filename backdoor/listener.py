@@ -2,6 +2,7 @@
 
 import base64  # https://docs.python.org/3/library/base64.html
 import json  # https://docs.python.org/3/library/json.html
+
 # import shlex  # https://docs.python.org/3/library/shlex.html
 import socket  # https://docs.python.org/3/library/socket.html
 
@@ -39,7 +40,7 @@ class Listener:
     def write_file(self, path, content):
         with open(path, "wb") as file:
             file.write(base64.b64decode(content))
-            return "[+] Download Succesful"
+            return "[+] Download Successful"
 
     def read_file(self, path):
         with open(path, "rb") as file:
