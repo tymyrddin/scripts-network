@@ -1,7 +1,8 @@
 # Backdoor
 
 This is a basic version with limited functionality, using the `json` protocol for serialization.
-Broad exception handling was added in both listener and backdoor for testing and debugging. Detailed messages on errors appear in the backdoor machine. 
+Broad exception handling was added in both listener and backdoor for testing and debugging. 
+Detailed messages on errors appear in the backdoor machine. 
 
 ## Usage
 
