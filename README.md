@@ -12,24 +12,36 @@ With many thanks to [EONRaider](https://github.com/EONRaider), [BlackHat](https:
 Into the deepest depths of an enterprise target, there are usually no tools to execute network attacks, and no means to install anything.
 And in many cases, a Python install can be found ...
 
-- [x] [MAC changer](mac_changer)
-- [x] [Network scanner](network_scanner)
-- [x] [ARP spoofer](arp_spoofer)
-- [x] [Packet sniffer](packet_sniffer)
-- [x] [DNS spoofer](dns_spoofer)
-- [x] [File interceptor](file_interceptor)
-- [x] [Code injector](code_injector)
-- [x] [Execute system commands](execute_commands)
-- [x] [Keylogger](keylogger)
-- [x] [Client-server skeleton](client-server)
-- [x] [Backdoor](backdoor)
-- [x] [Netcat replace](netcat_replace)
-- [x] [TCP proxy](tcp_proxy)      <= in progress
-- [ ] SSH tunneling
-- [ ] UDP host discovery
-- [ ] IP decoder
-- [ ] ICMP decoder
+### Layer 2
 
+- [x] [MAC changer](layer2/mac_changer)
+- [ ] [ARP poisoning](layer2/arp_poisoning)
+- [ ] [ARP watcher](layer2/arp_watcher)
+- [x] [ARP spoofer](layer2/arp_spoofer)
+- [x] [ARP spoof detector](layer2/arp_spoof_detector)
+
+### TCP/IP
+
+- [x] [Client-server skeleton](tcp-ip/client-server)
+- [x] [Network scanner](tcp-ip/network_scanner)
+- [ ] [TCP proxy](tcp-ip/tcp_proxy)      <= in progress
+
+### DNS
+
+- [x] [DNS spoofer](dns/dns_spoofer)
+
+### HTTP
+
+- [x] [Packet sniffer](http/packet_sniffer)
+- [x] [Netcat replace](http/netcat_replace)
+- [x] [Code injector](http/code_injector)
+
+### Other
+
+- [x] [File interceptor](other/file_interceptor)
+- [x] [Execute system commands](other/execute_commands)
+- [x] [Keylogger](other/keylogger)
+- [x] [Backdoor](other/backdoor)
 
 ## Problems or Suggestions
 

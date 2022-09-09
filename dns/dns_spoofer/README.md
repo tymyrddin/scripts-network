@@ -44,7 +44,7 @@ rtt min/avg/max/mdev = 131.125/131.125/131.125/0.000 ms
 
 ```
 
-Become MitM by running the [arp_spoofer](/arp_spoofer)
+Become MitM by running the [arp_spoofer](/layer2/arp_spoofer)
 
 ```shell
 @kali:~$ sudo python3 arp_spoofer.py

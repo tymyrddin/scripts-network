@@ -31,7 +31,7 @@ Example:
 ## Kicking the tyres
 
 * Choose what type of file to replace, and make sure you have a replacement file in `/var/www/html/evil/`
-* Run the [arp_spoofer.py script](/arp_spoofer)
+* Run the [arp_spoofer.py script](/layer2/arp_spoofer)
 
 ```shell
     @kali:~$ sudo python3 arp_spoofer.py

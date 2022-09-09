@@ -26,7 +26,7 @@ Example:
 ```
 ## Kicking the tyres
 
-Become MitM by running the [arp_spoofer](/arp_spoofer)
+Become MitM by running the [arp_spoofer](/layer2/arp_spoofer)
 
 ```shell
 @kali:~$ sudo python3 arp_spoofer.py
