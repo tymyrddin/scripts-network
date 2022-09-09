@@ -3,7 +3,6 @@
 import base64  # https://docs.python.org/3/library/base64.html
 import json  # https://docs.python.org/3/library/json.html
 
-# import shlex  # https://docs.python.org/3/library/shlex.html
 import socket  # https://docs.python.org/3/library/socket.html
 
 

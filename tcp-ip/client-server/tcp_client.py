@@ -2,8 +2,6 @@
 
 import socket  # https://docs.python.org/3/library/socket.html
 
-# target_host = "www.duckduckgo.com"
-# target_port = 80
 
 target_host = "192.168.122.108"
 target_port = 4444
