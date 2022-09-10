@@ -15,14 +15,12 @@ And in many cases, a Python install can be found ...
 ### Layer 2
 
 - [x] [MAC changer](layer2/mac_changer)
-- [ ] [ARP poisoning](layer2/arp_poisoning)
-- [ ] [ARP watcher](layer2/arp_watcher)
 - [x] [ARP spoofer](layer2/arp_spoofer)
 - [x] [ARP spoof detector](layer2/arp_spoof_detector)
 
 ### TCP/IP
 
-- [x] [Client-server skeleton](tcp-ip/client-server)
+- [x] [Client-server skeleton](tcp-ip/client_server)
 - [x] [Network scanner](tcp-ip/network_scanner)
 - [ ] [TCP proxy](tcp-ip/tcp_proxy)      <= in progress
 
