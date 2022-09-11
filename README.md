@@ -34,7 +34,7 @@ And in many cases, a Python install can be found ...
 - [x] [Netcat replace](http/netcat_replace)
 - [x] [Code injector](http/code_injector)
 
-### Other
+### Other messing about
 
 - [x] [File interceptor](other/file_interceptor)
 - [x] [Execute system commands](other/execute_commands)
