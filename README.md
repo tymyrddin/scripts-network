@@ -1,10 +1,8 @@
-# Network scripts
+# Python network pentesting scripts
 
 Some python scripting network hacks and network system administration for practising with Python 3 the non-boring way in a familiar domain (or vv).
 
-## Requirements
-
-_Do not implement and execute these on a network or system you do not own. Execute only on [your own systems for learning purposes](https://github.com/tymyrddin/ymrir/wiki). Do not execute these on any production network or system, unless "Rules of engagement" have been agreed on, and you have a "Get out of jail free" card of some sort. The scripts have defaults set for our lab. If you wish to run these scripts, change the defaults for your context or provide arguments._
+_Do not implement and execute these on a network or system you do not own. Execute only on your own systems for learning purposes. Do not execute these on any production network or system, unless "Rules of engagement" have been agreed on, and you have a "Get out of jail free" card of some sort. The scripts have defaults set for our lab. If you wish to run these scripts, change the defaults for your context or provide arguments._
 
 ## Scripts
 
@@ -21,7 +19,6 @@ And in many cases, a Python install can be found ...
 
 - [x] [Client-server skeleton](tcp-ip/client_server)
 - [x] [Network scanner](tcp-ip/network_scanner)
-- [ ] [TCP proxy](tcp-ip/tcp_proxy)      <= in progress
 
 ### DNS
 
@@ -44,4 +41,4 @@ And in many cases, a Python install can be found ...
 
 This project welcomes contributions and suggestions. 
 
-[Open an issue here](https://github.com/tymyrddin/ymrir/issues)
+[Open an issue here](https://github.com/tymyrddin/scripts-network/issues)
