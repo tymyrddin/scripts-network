@@ -9,33 +9,17 @@ _Do not implement and execute these on a network or system you do not own. Execu
 Into the deepest depths of an enterprise target, there are usually no tools to execute network attacks, and no means to install anything.
 And in many cases, a Python install can be found ...
 
-### Layer 2
 
-- [x] [MAC changer](layer2/mac_changer)
-- [x] [ARP spoofer](layer2/arp_spoofer)
-- [x] [ARP spoof detector](layer2/arp_spoof_detector)
-
-### TCP/IP
-
-- [x] [Client-server skeleton](tcp-ip/client_server)
-- [x] [Network scanner](tcp-ip/network_scanner)
-
-### DNS
-
-- [x] [DNS spoofer](dns/dns_spoofer)
-
-### HTTP
-
-- [x] [Packet sniffer](http/packet_sniffer)
-- [x] [Netcat replace](http/netcat_replace)
-- [x] [Code injector](http/code_injector)
-
-### Other messing about
-
-- [x] [File interceptor](other/file_interceptor)
-- [x] [Execute system commands](other/execute_commands)
-- [x] [Keylogger](other/keylogger)
-- [x] [Backdoor](other/backdoor)
+* [MAC changer](mac_changer)
+* [ARP spoofer](arp_spoofer)
+* [File interceptor](file_interceptor)
+* [Code injector](code_injector)
+* [Client-server skeleton](client_server)
+* [Network scanner](network_scanner)
+* [DNS spoofer](dns_spoofer)
+* [Packet sniffer](packet_sniffer)
+* [Netcat replace](netcat_replace)
+* [Wireless](wireless)
 
 ## Problems or Suggestions
 
