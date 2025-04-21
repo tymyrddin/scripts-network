@@ -26,7 +26,7 @@ And in many cases, a Python install can be found ...
 
 * [Intranet router audits](intranet-router-audits)
 * [ISP-Grade router audits](isp-grade-router-audits)
-
+* [Carrier-Grade Routers](carrier-grade-router-audits)
 
 ## Problems or Suggestions
 

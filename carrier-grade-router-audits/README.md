@@ -1,36 +1,63 @@
 # Carrier-Grade Routers
 
-Legal Considerations:
+Legal Considerations: Always obtain written permission before testing Carrier Grade equipment
 
-* Always obtain written permission before testing ISP equipment
-* Use dedicated VLANs for audits (avoid production traffic)
+## Scripts
 
-## How to use these scripts
+----
+
+[Juniper MX Series](juniper_audit.py) checks BGP hijacking risks, default SNMP
+
+Metadata:
+
+* Device Type: Core router
+* Typical Deployment: Internet backbones, IXPs
+* Protocols Audited: BGP
+* Critical Risks: Route leaks/hijacks
+* Script Purpose: Enforce RPKI and peer validation
+* Impact: Prevents global outages
 
 Install dependencies:
 
 ```commandline
 pip install jnpr.junos
-brew install ike-scan dns-sd  # macOS
-sudo apt install ike-scan avahi-utils  # Linux
 ```
 
-Run scripts:
+Run: `python3 juniper_audit.py`
+
+----
+
+[Nokia ISAM (DSLAM)](nokia_audit.sh) checks IKEv1 PSK weaknesses
+
+* Device Type: DSLAM/OLT
+* Typical Deployment: ISP last-mile aggregation
+* Protocols Audited: IPsec, GPON
+* Critical Risks: Mobile backhaul interception
+* Script Purpose: Detect weak VPN configurations
+* Impact: Prevents subscriber data theft
+
+Install dependencies:
 
 ```commandline
-python3 huawei_audit.py
-bash zyxel_audit.sh
+brew install ike-scan dns-sd
+sudo apt install ike-scan avahi-utils
 ```
 
-## Critical findings
+Run: `chmod +x nokia_audit.sh && ./nokia_audit.sh`
 
-BGP misconfig → Contact ISP
-IKE misconfig → Implement RPKI for BGP and Batfish (config audit)
+----
 
-## Scripts
+[Cisco ASR 9000 (Carrier Core)](cisco_asr_audit.sh) checks NetFlow data leakage, BGP hijack prepend
 
-[Juniper MX Series](juniper_audit.py) checks BGP hijacking risks, default SNMP
+Metadata:
 
-[Nokia/Alcatel-Lucent](nokia_audit.sh) checks IKEv1 PSK weaknesses
+* Device Type: Edge router
+* Typical Deployment: ISP peering points
+* Protocols Audited: BGP, NetFlow
+* Critical Risks: Traffic interception
+* Script Purpose: Enforce traffic logging policies
+* Impact: Prevents ISP espionage
 
-Cisco ASR 9000 (Carrier Core) checks: NetFlow data leakage, BGP hijack prepend
+Run: `chmod +x cisco_asr_audit.sh && ./cisco_asr_audit.sh`
+
+----
