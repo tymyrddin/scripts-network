@@ -6,9 +6,10 @@ _Do not implement and execute these on a network or system you do not own. Execu
 
 ## Scripts
 
+### Enterprise target
+
 Into the deepest depths of an enterprise target, there are usually no tools to execute network attacks, and no means to install anything.
 And in many cases, a Python install can be found ...
-
 
 * [MAC changer](mac_changer)
 * [ARP spoofer](arp_spoofer)
@@ -20,6 +21,12 @@ And in many cases, a Python install can be found ...
 * [Packet sniffer](packet_sniffer)
 * [Netcat replace](netcat_replace)
 * [Wireless](wireless)
+
+### Router audits
+
+* [Intranet router audits](intranet-router-audits)
+* [ISP-Grade router audits](isp-grade-router-audits)
+
 
 ## Problems or Suggestions
 
